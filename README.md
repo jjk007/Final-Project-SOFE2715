@@ -1,5 +1,5 @@
 # Final-Project-SOFE2715
 
 Selections
- - Dictionary
- - ?
+ - K-means Clustering
+ - Face localisation
