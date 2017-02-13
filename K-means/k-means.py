@@ -1,6 +1,7 @@
 import csv
 import random
-import matplotlib
+import math
+import matplotlib.pyplot as plt
 
 class Kmeans(object):
     "K-means clustering algorithm"
@@ -17,26 +18,37 @@ class Kmeans(object):
         c4 = random.choice(data)
         c5 = random.choice(data)
 
-        abc = 1+1
-        print abc
-        return 0
-
-    def parse(self):
+    def parse():
         "Parses the data sets from the csv file we are given to work with"
+        file = open("exercise-1.csv")# should be manualized later
+        rawFile = csv.reader(file)   # Reading the csv file into a raw form
+        rawData = list(rawFile)      # Converting the raw data into list from.
+        dataObject = Kmeans(rawData) # Creating the object and passing the data
+        '''
+        Remember, csv reader reads the libarary line by line, and for the files
+        that are given to us first line is always meta data and we don't want
+        that to be taken into clustering as well. Which is why we use the list
+        from index 1 rather than 0.
+        Since we have 2 columns, when converted into list/array it is 2D list.
+        Here, index 0 in each line is x-coordinate, index 1 is the y-coordinate
+        So we can refer to them data[line_number][x/y].
+        We also need to convert them to number everytime.They are read as string
+        '''
+
+    # def euclideanDistance(self, p, q):
+    #     "This calculates the Euclidean Distance b/w p & q, in the standard way"
+    #     distance = math.sqrt(((p[][0]-q[][0])**2) + ((p[][1]-p[][1])**2))
+    #     return distance
+
+    def draw(self, xCords, yCords, pointerColor="k"):
+        # size = len(self.data)
+        plt.xlabel("x")
+        plt.ylabel("y")
+        plt.title("Initial Plot")
+        plt.legend()
+        plt.show()
+        plt.scatter(xCords, yCords, label="Graph1", color=pointerColor, s=10)
         # TODO
-        return 0
-
-    def euclideanDistance(self, xCord, yCord):
-        "This calculates the Euclidean Distance b/w X & Y, in the standard way"
-        distance = xCord + yCord
-        # TODO
-        return distance
-
-    def display(self):
-        "Displays the data, for TESTING"
-        #TODO
-        return 0
-
 
 # inf
 # https://youtu.be/RD0nNK51Fp8
