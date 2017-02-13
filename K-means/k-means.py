@@ -25,7 +25,7 @@ class Kmeans(object):
         rawData = list(rawFile)      # Converting the raw data into list from.
         dataObject = Kmeans(rawData) # Creating the object and passing the data
         '''
-        Remember, csv reader reads the libarary line by line, and for the files
+        Remember, csv reader reads the file line by line, and for the files
         that are given to us first line is always meta data and we don't want
         that to be taken into clustering as well. Which is why we use the list
         from index 1 rather than 0.
