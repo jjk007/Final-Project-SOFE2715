@@ -35,10 +35,10 @@ class Kmeans(object):
         We also need to convert them to number everytime.They are read as string
         '''
 
-    # def euclideanDistance(self, p, q):
-    #     "This calculates the Euclidean Distance b/w p & q, in the standard way"
-    #     distance = math.sqrt(((p[][0]-q[][0])**2) + ((p[][1]-p[][1])**2))
-    #     return distance
+    def euclideanDistance(self, p, q):
+        "This calculates the Euclidean Distance b/w p & q, in the standard way"
+        distance = math.sqrt(((p[][0]-q[][0])**2) + ((p[][1]-p[][1])**2))
+        return distance
 
     def draw(self, xCords, yCords, pointerColor="k"):
         # size = len(self.data)
