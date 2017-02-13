@@ -11,11 +11,11 @@ class Kmeans(object):
     def cluster(self):
         "This is the main method, which executes k-means clustering algorithm"
         k = 5 # k is the number of clusters to be develped from the data
-        c1 = random.randrange(a,b) # These are the randomly picked centroids
-        c2 = random.randrange(a,b)
-        c3 = random.randrange(a,b)
-        c4 = random.randrange(a,b)
-        c5 = random.randrange(a,b)
+        c1 = random.choice(data) # These are the randomly picked centroids
+        c2 = random.choice(data)
+        c3 = random.choice(data)
+        c4 = random.choice(data)
+        c5 = random.choice(data)
 
         abc = 1+1
         print abc
