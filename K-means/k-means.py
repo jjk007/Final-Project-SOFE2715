@@ -1,3 +1,5 @@
+# thou shall not cross 80 columns in thy file
+
 import csv
 import random
 import math
