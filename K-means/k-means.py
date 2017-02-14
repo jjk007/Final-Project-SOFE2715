@@ -21,7 +21,7 @@ class Kmeans(object):
 
     def parse():
         "Parses the data sets from the csv file we are given to work with"
-        file = open("exercise-1.csv")  # should be manualized later
+        file = open("exercise-4.csv")  # should be manualized later
         rawFile = csv.reader(file)    # Reading the csv file into a raw form
         rawData = list(rawFile)       # Converting the raw data into list from.
         dataObject = Kmeans(rawData)  # Creating the obj and passing the data
@@ -40,7 +40,7 @@ class Kmeans(object):
         "This calculates the Euclidean Distance b/w p & q, in the standard way"
         distance = math.sqrt(((p[][0]-q[][0])**2) + ((p[][1]-p[][1])**2))
         return distance
-    
+
     def draw(xCords, yCords, xLabel, yLabel, keyword, pointerColor="black"):
         # size = len(self.data)
         plot.xlabel(xLabel)
