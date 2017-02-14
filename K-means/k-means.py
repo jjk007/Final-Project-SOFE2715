@@ -6,14 +6,31 @@ import math
 import matplotlib.pyplot as plot
 
 
+centriod = list()
+labels = ""
+clusteredData = list()
+
+
 def cluster():
     "This is the main method, which executes k-means clustering algorithm"
     k = 3  # k is the number of clusters to be develped from the data
     data = parse()
-    lables = result.pop(0)
+    lables = data.pop(0)
+    [float(num) for num in data]  # Convert the list to floating numbers
     for i in range(0, 3):
         centriod.append(random.choice(data))
     # These are the randomly picked centroids
+    for val in data:
+        distance1 = euclideanDistance(centriod[0], val)
+        distance2 = euclideanDistance(centriod[1], val)
+        distance3 = euclideanDistance(centriod[2], val)
+        if(distance1 > distance2 and distance1 > distance3):
+            clusteredData[0].append(val)
+        elif(distance2 > distance1 and distance2 > distance3):
+            clusteredData[1].append(val)
+        else:
+            clusteredData[2].append(val)
+    # TODO draw them
 
 
 def parse():
@@ -30,7 +47,6 @@ def parse():
     Since we have 2 columns, when converted into list/array it is 2D list.
     Here, index 0 in each line is x-coordinate, index 1 is the y-coordinate
     So we can refer to them data[line_number][x/y].
-    We also need to convert them to a number.They are read as string
     '''
 
 

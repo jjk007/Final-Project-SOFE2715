@@ -16,11 +16,15 @@ def cluster():
     k = 3  # k is the number of clusters to be develped from the data
     data = parse()
     labels = data.pop(0)
+    def myFloat(List):
+        return map(float, List)
+    map(myFloat, data)
     for i in range(0, 3):
         centriod.append(random.choice(data))
     # These are the randomly picked centroids
     for i in range(0, 3):
         print centriod[i]
     print labels
+    print data
 
 cluster()
