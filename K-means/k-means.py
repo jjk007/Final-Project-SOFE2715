@@ -41,7 +41,7 @@ class Kmeans(object):
         distance = math.sqrt(((p[][0]-q[][0])**2) + ((p[][1]-p[][1])**2))
         return distance
     
-    def draw(xCords, yCords, xLabel, yLabel, keyword,pointerColor="black"):
+    def draw(xCords, yCords, xLabel, yLabel, keyword, pointerColor="black"):
         # size = len(self.data)
         plot.xlabel(xLabel)
         plot.ylabel(yLabel)
