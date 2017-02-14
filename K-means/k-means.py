@@ -3,7 +3,7 @@
 import csv
 import random
 import math
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plot
 
 
 class Kmeans(object):
@@ -14,12 +14,10 @@ class Kmeans(object):
 
     def cluster(self):
         "This is the main method, which executes k-means clustering algorithm"
-        k = 5  # k is the number of clusters to be develped from the data
-        c1 = random.choice(data)# These are the randomly picked centroids
-        c2 = random.choice(data)# Data is the list of unclustered data we've got
-        c3 = random.choice(data)
-        c4 = random.choice(data)
-        c5 = random.choice(data)
+        k = 3  # k is the number of clusters to be develped from the data
+        for i in range(0,3):
+            centriod[i] = random.choice(data)
+            # These are the randomly picked centroids
 
     def parse():
         "Parses the data sets from the csv file we are given to work with"
@@ -42,16 +40,16 @@ class Kmeans(object):
         "This calculates the Euclidean Distance b/w p & q, in the standard way"
         distance = math.sqrt(((p[][0]-q[][0])**2) + ((p[][1]-p[][1])**2))
         return distance
-
-    def draw(self, xCords, yCords, pointerColor="k"):
+    
+    def draw(xCords, yCords, xLabel, yLabel, keyword,pointerColor="black"):
         # size = len(self.data)
-        plt.xlabel("x")
-        plt.ylabel("y")
-        plt.title("Initial Plot")
-        plt.legend()
-        plt.show()
-        plt.scatter(xCords, yCords, label="Graph1", color=pointerColor, s=10)
-        # TODO
+        plot.xlabel(xLabel)
+        plot.ylabel(yLabel)
+        plot.title("Initial Plot")
+        plot.legend()
+        plot.scatter(xCords, yCords,label="mainGraph", color=pointerColor, s=10)
+        if keyword == True:
+            plot.show()
 
 # inf
 # https://youtu.be/RD0nNK51Fp8
