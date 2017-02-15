@@ -25,9 +25,9 @@ def cluster():
             newData[i].append(float(data[i][j]))  # Append converted data
     for i in range(0, 3):
         centriod.append(random.choice(newData))
-    # These are the randomly picked centroids, should be rebuild in the future
+    # These are the randomly picked centroids, should be calculated later
 
-    for val in data:
+    for val in newData:
         distance1 = euclideanDistance(centriod[0], val)
         distance2 = euclideanDistance(centriod[1], val)
         distance3 = euclideanDistance(centriod[2], val)
@@ -75,7 +75,22 @@ def draw(xCords, yCords, xLabel, yLabel, keyword, pointerColor="black"):
 
 
 def kFinder():
-    #TODO
+    "This finds the apt K value from the given cluster using gap-statistics"
+    return 0
+    # TODO
+
+
+def toXandY(unorderedData):
+    "This method converts seperates x and y co-ordinates for plotting"
+    orderedData = []
+    orderedData.append([])        # Add a new sublsit every time
+    orderedData.append([])        # Add a new sublsit every time
+    listSize = len(unorderedData)
+    for x in range(0, listSize):
+            orderedData[0].append(unorderedData[x][0])  # Seperates the x-cords
+    for y in range(0, listSize):
+            orderedData[1].append(unorderedData[y][1])  # Seperates the y-cords
+    return orderedData
 
 
     '''
