@@ -7,7 +7,6 @@ import matplotlib.pyplot as plot
 
 
 centriod = list()
-labels = ""
 clusteredData = list()
 
 
