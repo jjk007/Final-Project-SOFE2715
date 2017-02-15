@@ -73,5 +73,11 @@ def draw(xCords, yCords, xLabel, yLabel, keyword, pointerColor="black"):
     if keyword:
         plot.show()
 
-# inf
-# https://youtu.be/RD0nNK51Fp8
+
+def kFinder():
+    #TODO
+
+
+    '''
+    Base Video : https://youtu.be/RD0nNK51Fp8
+    '''
