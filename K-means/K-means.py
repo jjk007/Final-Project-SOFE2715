@@ -18,13 +18,15 @@ def cluster():
     data = parse()
     labels = data.pop(0)
     listSize = len(data)
-    for i in range(0, listSize):  # Trying to convert the string list to float
+
+    for i in range(0, listSize):  # Converting the string list to float
         newData.append([])        # Add a new sublsit every time
         for j in range(0, 2):
             newData[i].append(float(data[i][j]))  # Append converted data
     for i in range(0, 3):
         centriod.append(random.choice(newData))
     # These are the randomly picked centroids, should be rebuild in the future
+
     for val in data:
         distance1 = euclideanDistance(centriod[0], val)
         distance2 = euclideanDistance(centriod[1], val)
@@ -57,7 +59,7 @@ def parse():
 
 def euclideanDistance(p, q):
     "This calculates the Euclidean Distance b/w p & q, in the standard way"
-    distance = math.sqrt(((p[][0]-q[][0])**2) + ((p[][1]-p[][1])**2))
+    distance = math.sqrt(((p[0][0]-q[0][0])**2) + ((p[1][1]-p[1][1])**2))
     return distance
 
 
