@@ -20,13 +20,15 @@ def cluster():
     data = parse()
     labels = data.pop(0)
     listSize = len(data)
-    for i in range(0, listSize):  # Trying to convert the string list to float here
+
+    for i in range(0, listSize):  # Trying to convert the string list to float
         newData.append([])        # Add a new sublsit every time
         for j in range(0, 2):
             newData[i].append(float(data[i][j]))  # Append converted data
     for i in range(0, 3):
         centriod.append(random.choice(newData))
     # These are the randomly picked centroids
+
     for i in range(0, 3):
         print centriod[i]
     print labels
