@@ -14,12 +14,17 @@ clusteredData = list()
 def cluster():
     "This is the main method, which executes k-means clustering algorithm"
     k = 3  # k is the number of clusters to be develped from the data
+    newData = []
     data = parse()
-    lables = data.pop(0)
-    [float(num) for num in data]  # Convert the list to floating numbers
+    labels = data.pop(0)
+    listSize = len(data)
+    for i in range(0, listSize):  # Trying to convert the string list to float
+        newData.append([])        # Add a new sublsit every time
+        for j in range(0, 2):
+            newData[i].append(float(data[i][j]))  # Append converted data
     for i in range(0, 3):
-        centriod.append(random.choice(data))
-    # These are the randomly picked centroids
+        centriod.append(random.choice(newData))
+    # These are the randomly picked centroids, should be rebuild in the future
     for val in data:
         distance1 = euclideanDistance(centriod[0], val)
         distance2 = euclideanDistance(centriod[1], val)
