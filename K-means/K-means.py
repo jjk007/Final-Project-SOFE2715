@@ -17,6 +17,9 @@ def cluster():
     data = parse()
     labels = data.pop(0)
     listSize = len(data)
+    clusteredData.append([])
+    clusteredData.append([])
+    clusteredData.append([])
 
     for i in range(0, listSize):  # Converting the string list to float
         newData.append([])        # Add a new sublsit every time
@@ -36,12 +39,24 @@ def cluster():
             clusteredData[1].append(val)
         else:
             clusteredData[2].append(val)
-    # TODO draw them
+
+    clusteredData[0] = toXandY(clusteredData[0]) 
+    clusteredData[1] = toXandY(clusteredData[1]) 
+    clusteredData[2] = toXandY(clusteredData[2]) 
+    draw(clusteredData[0][0],clusteredData[0][1],labels[0],labels[1],"Cluster 1", False,"r")
+    draw(clusteredData[1][0],clusteredData[1][1],labels[0],labels[1],"Cluster 2", False,"g")
+    draw(clusteredData[2][0],clusteredData[2][1],labels[0],labels[1],"Cluster 3", True,"b")
+
+
+def euclideanDistance(p, q):
+    "This calculates the Euclidean Distance b/w p & q, in the standard way"
+    distance = math.sqrt(((p[0]-q[0])**2) + ((p[1]-q[1])**2))
+    return distance
 
 
 def parse():
     "Parses the data sets from the csv file we are given to work with"
-    file = open("exercise-4.csv")  # should be manualized later
+    file = open("exercise-3.csv")  # should be manualized later
     rawFile = csv.reader(file)    # Reading the csv file into a raw form
     rawData = list(rawFile)       # Converting the raw data into list from.
     return rawData
@@ -56,19 +71,13 @@ def parse():
     '''
 
 
-def euclideanDistance(p, q):
-    "This calculates the Euclidean Distance b/w p & q, in the standard way"
-    distance = math.sqrt(((p[0][0]-q[0][0])**2) + ((p[1][1]-p[1][1])**2))
-    return distance
-
-
-def draw(xCords, yCords, xLabel, yLabel, keyword, pointerColor="black"):
+def draw(xCords, yCords, xLabel, yLabel, clusterLabel, keyword, pointerColor):
     # size = len(self.data)
     plot.xlabel(xLabel)
     plot.ylabel(yLabel)
     plot.title("Initial Plot")
     plot.legend()
-    plot.scatter(xCords, yCords, label="mainGraph", color=pointerColor, s=10)
+    plot.scatter(xCords, yCords, label=clusterLabel, color=pointerColor, s=10)
     if keyword:
         plot.show()
 
@@ -92,6 +101,8 @@ def toXandY(unorderedData):
     return orderedData
 
 
-    '''
+cluster() # Executes the whole code above
+
+'''
     Base Video : https://youtu.be/RD0nNK51Fp8
-    '''
+'''

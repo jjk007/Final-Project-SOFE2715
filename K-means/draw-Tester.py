@@ -6,7 +6,7 @@ def draw(xCords, yCords, keyword, pointerColor="black"):
     plot.ylabel("y")
     plot.title("Initial Plot")
     plot.legend()
-    plot.scatter(xCords, yCords, label="mainGraph", color=pointerColor, s=100)
+    plot.scatter(xCords, yCords, label="mainGraph", color=pointerColor, s=10)
     if keyword:
         plot.show()
 
