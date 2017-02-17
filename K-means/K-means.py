@@ -72,12 +72,11 @@ def parse():
 
 
 def draw(xCords, yCords, xLabel, yLabel, clusterLabel, pointerColor):
-    # size = len(self.data)
     plot.xlabel(xLabel)
     plot.ylabel(yLabel)
     plot.title("Initial Plot")
+    plot.scatter(xCords, yCords, color=pointerColor, s=10, label=clusterLabel)
     plot.legend()
-    plot.scatter(xCords, yCords, label=clusterLabel, color=pointerColor, s=10)
 
 
 def kFinder():
