@@ -7,7 +7,7 @@ import matplotlib.pyplot as plot
 
 
 centriod = list()
-clusteredData = list()
+clustered = list()
 
 
 def cluster():
@@ -17,9 +17,9 @@ def cluster():
     data = parse()
     labels = data.pop(0)
     listSize = len(data)
-    clusteredData.append([])
-    clusteredData.append([])
-    clusteredData.append([])
+    clustered.append([])
+    clustered.append([])
+    clustered.append([])
 
     for i in range(0, listSize):  # Converting the string list to float
         newData.append([])        # Add a new sublsit every time
@@ -34,18 +34,18 @@ def cluster():
         distance2 = euclideanDistance(centriod[1], val)
         distance3 = euclideanDistance(centriod[2], val)
         if(distance1 > distance2 and distance1 > distance3):
-            clusteredData[0].append(val)
+            clustered[0].append(val)
         elif(distance2 > distance1 and distance2 > distance3):
-            clusteredData[1].append(val)
+            clustered[1].append(val)
         else:
-            clusteredData[2].append(val)
+            clustered[2].append(val)
 
-    clusteredData[0] = toXandY(clusteredData[0]) 
-    clusteredData[1] = toXandY(clusteredData[1]) 
-    clusteredData[2] = toXandY(clusteredData[2]) 
-    draw(clusteredData[0][0],clusteredData[0][1],labels[0],labels[1],"Cluster 1", False,"r")
-    draw(clusteredData[1][0],clusteredData[1][1],labels[0],labels[1],"Cluster 2", False,"g")
-    draw(clusteredData[2][0],clusteredData[2][1],labels[0],labels[1],"Cluster 3", True,"b")
+    clustered[0] = toXandY(clustered[0]) 
+    clustered[1] = toXandY(clustered[1]) 
+    clustered[2] = toXandY(clustered[2]) 
+    draw(clustered[0][0],clustered[0][1],labels[0],labels[1],"Cluster 1", "r")
+    draw(clustered[1][0],clustered[1][1],labels[0],labels[1],"Cluster 2", "g")
+    draw(clustered[2][0],clustered[2][1],labels[0],labels[1],"Cluster 3", "b")
 
 
 def euclideanDistance(p, q):
@@ -71,15 +71,13 @@ def parse():
     '''
 
 
-def draw(xCords, yCords, xLabel, yLabel, clusterLabel, keyword, pointerColor):
+def draw(xCords, yCords, xLabel, yLabel, clusterLabel, pointerColor):
     # size = len(self.data)
     plot.xlabel(xLabel)
     plot.ylabel(yLabel)
     plot.title("Initial Plot")
     plot.legend()
     plot.scatter(xCords, yCords, label=clusterLabel, color=pointerColor, s=10)
-    if keyword:
-        plot.show()
 
 
 def kFinder():
@@ -102,6 +100,7 @@ def toXandY(unorderedData):
 
 
 cluster() # Executes the whole code above
+plot.show() # Shows the graph that is drawn in memoery
 
 '''
     Base Video : https://youtu.be/RD0nNK51Fp8
