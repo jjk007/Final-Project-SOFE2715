@@ -40,12 +40,12 @@ def cluster():
         else:
             clustered[2].append(val)
 
-    clustered[0] = toXandY(clustered[0]) 
-    clustered[1] = toXandY(clustered[1]) 
-    clustered[2] = toXandY(clustered[2]) 
-    draw(clustered[0][0],clustered[0][1],labels[0],labels[1],"Cluster 1", "r")
-    draw(clustered[1][0],clustered[1][1],labels[0],labels[1],"Cluster 2", "g")
-    draw(clustered[2][0],clustered[2][1],labels[0],labels[1],"Cluster 3", "b")
+    clustered[0] = toXandY(clustered[0])
+    clustered[1] = toXandY(clustered[1])
+    clustered[2] = toXandY(clustered[2])
+    draw(clustered[0][0], clustered[0][1],labels[0], labels[1], "Cluster1", "r")
+    draw(clustered[1][0], clustered[1][1],labels[0], labels[1], "Cluster2", "g")
+    draw(clustered[2][0], clustered[2][1],labels[0], labels[1], "Cluster3", "b")
 
 
 def euclideanDistance(p, q):
