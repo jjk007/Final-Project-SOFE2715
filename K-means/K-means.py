@@ -6,39 +6,41 @@ import math
 import matplotlib.pyplot as plot
 
 
-centriod = list()
-clustered = list()
+centriod = list()   # Stores the coordinates of centriods we generate
+clustered = list()  # Stores the clustered data in orderered form ,for plotting
 
 
 def cluster():
     "This is the main method, which executes k-means clustering algorithm"
-    k = 3  # k is the number of clusters to be develped from the data
+    K = 3  # k is the number of clusters to be develped from the data
     newData = []
+    distance = [0]*K
+    count = 0  # Stores the number of validated centroids
     data = parse()
     labels = data.pop(0)
     listSize = len(data)
-    clustered.append([])
-    clustered.append([])
-    clustered.append([])
+    for i in range(K):
+        clustered.append([]) # Making a sublist for every cluster
 
-    for i in range(0, listSize):  # Converting the string list to float
-        newData.append([])        # Add a new sublsit every time
-        for j in range(0, 2):
-            newData[i].append(float(data[i][j]))  # Append converted data
-    for i in range(0, 3):
+    for i in range(0, listSize):    # Converting the string list to float
+        newData.append([])          # Add a new sublsit every time
+        for j in range(0, 2):       # Append converted data to the new list
+            newData[i].append(float(data[i][j]))
+
+    # These are the randomly picked centroids, should be re-calculated later
+    for i in range(0, K):
         centriod.append(random.choice(newData))
-    # These are the randomly picked centroids, should be calculated later
-
+    
     for val in newData:
-        distance1 = euclideanDistance(centriod[0], val)
-        distance2 = euclideanDistance(centriod[1], val)
-        distance3 = euclideanDistance(centriod[2], val)
-        if(distance1 > distance2 and distance1 > distance3):
-            clustered[0].append(val)
-        elif(distance2 > distance1 and distance2 > distance3):
-            clustered[1].append(val)
-        else:
-            clustered[2].append(val)
+        for i in range(0, K):
+            distance[i] = euclideanDistance(centriod[i], val)
+            # Only this statement should be in the inner loop
+
+        '''
+        Do we cluster with BIGGEST distance OR SMALLEST DISTANCE
+        '''
+        maxIndex = distance.index(max(distance))
+        clustered[maxIndex].append(val)
 
     clustered[0] = toXandY(clustered[0])
     clustered[1] = toXandY(clustered[1])
@@ -72,6 +74,7 @@ def parse():
 
 
 def draw(xCords, yCords, xLabel, yLabel, clusterLabel, pointerColor):
+    "This method draws the clusterd plot using Matplotlib"
     plot.xlabel(xLabel)
     plot.ylabel(yLabel)
     plot.title("Initial Plot")
