@@ -5,5 +5,5 @@
 - http://cdn.intechopen.com/pdfs/8572.pdf
 - [[http://bytefish.de/pdf/facerec_python.pdf][Face recognition with python]]
 - https://web.stanford.edu/class/ee368/Project_03/Project/reports/ee368group02.pdf
-- https://web.stanford.edu/class/ee368/Project_03/Project/reports/ee368group15.pdf
+- https://web.stanford.edu/class/ee368/Project_03/Project/reports/ee368group15.pdf  ↯
 - [[https://developer.nvidia.com/how-to-cuda-python][CUDA with python]] 
