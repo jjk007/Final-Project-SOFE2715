@@ -8,10 +8,8 @@ import matplotlib.pyplot as plot
 
 centroid = list()   # Stores the coordinates of centroids we generate
 clustered = list()  # Stores the clustered data in orderered form ,for plotting
-newCentroidX = 0
-newCentroidY = 0
 newData = []        # Stores the type converted data
-K = 3               # k is the number of clusters to be develped from the data
+K = 0               # k is the number of clusters to be develped from the data
 
 
 def cluster():
@@ -30,9 +28,8 @@ def cluster():
         minIndex = distance.index(min(distance))  # Both of these should be
         clustered[minIndex].append(val)           # should be in the outer loop
 
-    for i in range(0, K):
-        centroid[i] = meanCords(clustered[i])
-
+        # Call the mean funtion each cluster by cluster and save the
+        # new centroid everytime
 
 def euclideanDistance(p, q):
     "This calculates the Euclidean Distance b/w p & q, in the standard way"
@@ -67,18 +64,26 @@ def draw(xCords, yCords, xLabel, yLabel, clusterLabel, pointerColor):
 
 def kFinder():
     "This finds the apt K value from the given cluster using gap-statistics"
-    return 0
+    return 3
     # TODO
 
 
-def meanCords(groupedCords):
+def meanCords(unorderedCluster):
     "This finds the mean of the clusters to reassign the centroids"
-    listSize = len(groupedCords)
-    total = 0
+    orderedCluster = toXandY(unorderedCluster)
+    listSize = len(orderedCluster[0])
+    totalX = 0
+    totalY = 0
     for i in range(0, listSize):
-        total += groupedCords[i] # Only this statement is in the loop BTW
-    avg = total/listSize
-    return avg  # Return the mean of the x or y co-ordinates
+        totalX += orderedCluster[0][i] # Adds up all the X-cords
+    for i in range(0, listSize):
+        totalY += orderedCluster[0][i] # Adds up all the X-cords
+    avgX = totalX/listSize
+    avgY = totalY/listSize
+    newCentroids = [0,0]
+    newCentroids[0] = avgX
+    newCentroids[1] = avgY
+    return newCentroids  # Return the mean of the x or y co-ordinates
 
 
 def toXandY(unorderedData):
@@ -96,6 +101,8 @@ def toXandY(unorderedData):
 
 def main():
     "This is the main method were execusion begins"
+    global K
+    K = kFinder()
     names = ["Cluster 1", "Cluster 2", "Cluster 3", "Cluster 4", "Cluster 5"]
     color = ["r", "g", "b", "m", "c"]  # Stores the color values
     data = parse()                     # Calling the parse funtion we made
@@ -118,7 +125,9 @@ def main():
 
     # Now we plot them
     for i in range(0, K):
-        clustered[i] = toXandY(clustered[i])
+        clustered[i] = toXandY(clustered[i])  # Seperates X and Y cords
+        print clustered[i]
+        print ""
         draw(clustered[i][0], clustered[i][1],
              labels[0], labels[1], names[i], color[i])
 
