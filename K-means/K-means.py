@@ -15,6 +15,8 @@ def cluster():
     K = 3  # k is the number of clusters to be develped from the data
     newData = []
     distance = [0]*K
+    names = ["Cluster 1", "Cluster 2", "Cluster 3", "Cluster 4", "Cluster 5"]
+    c = ["r", "g", "b", "m", "c"]  # Stores the color values
     count = 0  # Stores the number of validated centroids
     data = parse()
     labels = data.pop(0)
@@ -30,24 +32,23 @@ def cluster():
     # These are the randomly picked centroids, should be re-calculated later
     for i in range(0, K):
         centriod.append(random.choice(newData))
-    
+
     for val in newData:
         for i in range(0, K):
             distance[i] = euclideanDistance(centriod[i], val)
             # Only this statement should be in the inner loop
+            '''
+            Here I am calculating the distance between centriod & each
+            value to classify them into differnt clusters
+            '''
+        minIndex = distance.index(min(distance))
+        clustered[minIndex].append(val)
 
-        '''
-        Do we cluster with BIGGEST distance OR SMALLEST DISTANCE
-        '''
-        maxIndex = distance.index(max(distance))
-        clustered[maxIndex].append(val)
-
-    clustered[0] = toXandY(clustered[0])
-    clustered[1] = toXandY(clustered[1])
-    clustered[2] = toXandY(clustered[2])
-    draw(clustered[0][0], clustered[0][1],labels[0], labels[1], "Cluster1", "r")
-    draw(clustered[1][0], clustered[1][1],labels[0], labels[1], "Cluster2", "g")
-    draw(clustered[2][0], clustered[2][1],labels[0], labels[1], "Cluster3", "b")
+    # Now we plot them
+    for i in range(0, K):
+        clustered[i] = toXandY(clustered[i])
+        draw(clustered[i][0], clustered[i][1],
+             labels[0], labels[1], names[i], c[i])
 
 
 def euclideanDistance(p, q):
@@ -63,7 +64,7 @@ def parse():
     rawData = list(rawFile)       # Converting the raw data into list from.
     return rawData
     '''
-    Remember, csv reader reads the file line by line, and for the files
+    Csv reader reads the file line by line, and for the files
     that are given to us first line is always meta data and we don't want
     that to be taken into clustering as well. Which is why we use the list
     from index 1 rather than 0.
