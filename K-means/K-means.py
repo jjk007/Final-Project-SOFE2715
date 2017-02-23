@@ -6,8 +6,10 @@ import math
 import matplotlib.pyplot as plot
 
 
-centriod = list()   # Stores the coordinates of centriods we generate
+centroid = list()   # Stores the coordinates of centroids we generate
 clustered = list()  # Stores the clustered data in orderered form ,for plotting
+newCentroidX = 0
+newCentroidY = 0
 newData = []        # Stores the type converted data
 K = 3               # k is the number of clusters to be develped from the data
 
@@ -15,17 +17,21 @@ K = 3               # k is the number of clusters to be develped from the data
 def cluster():
     "This function performs the k-means clustering algorithm"
     distance = [0]*K
-
+    centroidDivided = []
+    centroidDivided.append([])   # Making the list 2D
     for val in newData:
         for i in range(0, K):
-            distance[i] = euclideanDistance(centriod[i], val)
+            distance[i] = euclideanDistance(centroid[i], val)
             # Only this statement should be in the inner loop
             '''
-            Here I am calculating the distance between centriod & each
+            Here I am calculating the distance between centroid & each
             value to classify them into differnt clusters
             '''
         minIndex = distance.index(min(distance))  # Both of these should be
         clustered[minIndex].append(val)           # should be in the outer loop
+
+    for i in range(0, K):
+        centroid[i] = meanCords(clustered[i])
 
 
 def euclideanDistance(p, q):
@@ -65,8 +71,8 @@ def kFinder():
     # TODO
 
 
-def MeanCords(groupedCords):
-    "This finds the mean of the clusters to reassign the centriods"
+def meanCords(groupedCords):
+    "This finds the mean of the clusters to reassign the centroids"
     listSize = len(groupedCords)
     total = 0
     for i in range(0, listSize):
@@ -92,12 +98,12 @@ def main():
     "This is the main method were execusion begins"
     names = ["Cluster 1", "Cluster 2", "Cluster 3", "Cluster 4", "Cluster 5"]
     color = ["r", "g", "b", "m", "c"]  # Stores the color values
-    data = parse()
+    data = parse()                     # Calling the parse funtion we made
     labels = data.pop(0)
     listSize = len(data)
 
     for i in range(K):
-        clustered.append([]) # Making a sublist for every cluster
+        clustered.append([])  # Making a sublist for every cluster
 
     for i in range(0, listSize):    # Converting the string list to float
         newData.append([])          # Add a new sublsit every time
@@ -106,9 +112,9 @@ def main():
 
     # These are the randomly picked centroids, should be re-calculated later
     for i in range(0, K):
-        centriod.append(random.choice(newData))
+        centroid.append(random.choice(newData))
 
-    cluster() # Executes the algorithm
+    cluster()  # Executes the algorithm
 
     # Now we plot them
     for i in range(0, K):
@@ -116,7 +122,7 @@ def main():
         draw(clustered[i][0], clustered[i][1],
              labels[0], labels[1], names[i], color[i])
 
-    plot.show() # Shows the graph that is drawn in memory
+    plot.show()  # Shows the graph that is drawn in memory
 
 
 if __name__ == "__main__":

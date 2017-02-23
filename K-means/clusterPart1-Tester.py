@@ -31,6 +31,7 @@ def cluster():
 
     for i in range(0, 3):
         print centriod[i]
+    print centriod
     print labels
     print newData
 
