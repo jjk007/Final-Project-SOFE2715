@@ -9,22 +9,29 @@ import matplotlib.pyplot as plot
 centroid = list()           # Stores the random centriods, we generate to start
 calculatedCentroid = list() # Stores the calculated centroids
 clustered = list()          # Stores the clustered data in orderered form
-newData = []                # Stores the type converted data
+newData = []                # Stores the type converted data in float
 K = 0                       # K is the number of clusters
+count = 0
 
 def cluster():
-    count = 0
     "This function performs the k-means clustering algorithm"
+    global count
     global centroid
     global calculatedCentroid
+    global clustered
+    global K
     distance = [0]*K
     print "pos 1"
-
     print centroid
     print calculatedCentroid
-    if cmp(calculatedCentroid, centroid) == 0:
-        print "pos 2"
+
+
+    if count > 50 and cmp(calculatedCentroid, centroid) == 0:
         return 0
+
+    del clustered[:]  # Empty the old cluster before appending new
+    for i in range(K):
+        clustered.append([])  # Making a sublist for every cluster
 
     for val in newData:
         for i in range(0, K):
@@ -37,16 +44,17 @@ def cluster():
         minIndex = distance.index(min(distance))  # Both of these should be
         clustered[minIndex].append(val)           # should be in the outer loop
 
+    if count > 0:
+        centroid = list(calculatedCentroid)  # Copying calculated to the oldList
 
-    print "pos 3"
+    del calculatedCentroid[:]  # Empty the calculatedCentroid list everytime
     for i in range(0, K):
         calculatedCentroid.append(meanCords(clustered[i]))
 
-    centroid = list(calculatedCentroid)   # Copying calculated to the old list
-
+    count += 1
     print "pos 4"
     cluster()  # Recursively calling cluster() again and again until convergence
-    print "pos 5"
+    print count
 
 
 def euclideanDistance(p, q):
@@ -57,7 +65,7 @@ def euclideanDistance(p, q):
 
 def parse():
     "Parses the data sets from the csv file we are given to work with"
-    file = open("exercise-3.csv")  # should be manualized later
+    file = open("exercise-5.csv")  # should be manualized later
     rawFile = csv.reader(file)    # Reading the csv file into a raw form
     rawData = list(rawFile)       # Converting the raw data into list from.
     return rawData
@@ -127,8 +135,6 @@ def main():
     labels = data.pop(0)
     listSize = len(data)
 
-    for i in range(K):
-        clustered.append([])  # Making a sublist for every cluster
 
     for i in range(0, listSize):    # Converting the string list to float
         newData.append([])          # Add a new sublsit every time
