@@ -1,4 +1,4 @@
-.
+.  
 ├── K-means.py  -> Main Algorithm file  
 ├── Exercises  
 │   ├── exercise-1.csv  
