@@ -6,12 +6,13 @@ import math
 import matplotlib.pyplot as plot
 
 
-centroid = list()           # Stores the random centriods, we generate to start
-calculatedCentroid = list() # Stores the calculated centroids
-clustered = list()          # Stores the clustered data in orderered form
-newData = []                # Stores the type converted data in float
+centroid = list()            # Stores the random centriods, we generate
+calculatedCentroid = list()  # Stores the calculated centroids
+clustered = list()           # Stores the clustered data in orderered form
+newData = []                 # Stores the type converted data in float
 K = 0                       # K is the number of clusters
 count = 0
+
 
 def cluster():
     "This function performs the k-means clustering algorithm"
@@ -45,7 +46,7 @@ def cluster():
 
     centroid = list(calculatedCentroid)  # Copying new centriod to the old var
     count += 1
-    cluster()  # Recursively calling cluster() again and again until convergence
+    cluster()  # Recursively calling cluster() again and again
 
 
 def euclideanDistance(p, q):
@@ -56,7 +57,7 @@ def euclideanDistance(p, q):
 
 def parse():
     "Parses the data sets from the csv file we are given to work with"
-    file = open("./Exercises/exercise-2.csv")  # should be manualized later
+    file = open("./Exercises/exercise-5.csv")  # should be manualized later
     rawFile = csv.reader(file)    # Reading the csv file into a raw form
     rawData = list(rawFile)       # Converting the raw data into list from.
     return rawData
@@ -81,7 +82,7 @@ def draw(xCords, yCords, xLabel, yLabel, clusterLabel, pointerColor):
 
 def kFinder():
     "This finds the apt K value from the given cluster using gap-statistics"
-    return 4
+    return random.randint(2, 6)
     # TODO
 
 
@@ -126,26 +127,20 @@ def main():
     data = parse()                     # Calling the parse funtion we made
     labels = data.pop(0)
     listSize = len(data)
-
-
     for i in range(0, listSize):    # Converting the string list to float
         newData.append([])          # Add a new sublsit every time
         for j in range(0, 2):       # Append converted data to the new list
             newData[i].append(float(data[i][j]))
-
     # These are the randomly picked centroids, should be re-calculated later
     for i in range(0, K):
         centroid.append(random.choice(newData))
-
     cluster()  # Executes the algorithm
-    print "Number of iterations: "+ str(count)
-
+    print "Number of iterations: " + str(count)
     # Now we plot them
     for i in range(0, K):
         clustered[i] = toXandY(clustered[i])  # Seperates X and Y cords
         draw(clustered[i][0], clustered[i][1],
              labels[0], labels[1], names[i], color[i])
-
     plot.show()  # Shows the graph that is drawn in memory
 
 
