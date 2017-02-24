@@ -21,14 +21,6 @@ def cluster():
     global clustered
     global K
     distance = [0]*K
-    print "pos 1"
-    print centroid
-    print calculatedCentroid
-
-
-    if count > 50 and cmp(calculatedCentroid, centroid) == 0:
-        return 0
-
     del clustered[:]  # Empty the old cluster before appending new
     for i in range(K):
         clustered.append([])  # Making a sublist for every cluster
@@ -44,17 +36,17 @@ def cluster():
         minIndex = distance.index(min(distance))  # Both of these should be
         clustered[minIndex].append(val)           # should be in the outer loop
 
-    if count > 0:
-        centroid = list(calculatedCentroid)  # Copying calculated to the oldList
-
     del calculatedCentroid[:]  # Empty the calculatedCentroid list everytime
-    for i in range(0, K):
+    for i in range(0, K):      # Calculate new centriods
         calculatedCentroid.append(meanCords(clustered[i]))
 
+    if cmp(calculatedCentroid, centroid) == 0:  # Comapre old and new centriods
+        return 0
+
+    centroid = list(calculatedCentroid)  # Copying new centriod to the old var
     count += 1
-    print "pos 4"
     cluster()  # Recursively calling cluster() again and again until convergence
-    print count
+    print "Number of iterations: "+ str(count)
 
 
 def euclideanDistance(p, q):
@@ -65,7 +57,7 @@ def euclideanDistance(p, q):
 
 def parse():
     "Parses the data sets from the csv file we are given to work with"
-    file = open("exercise-5.csv")  # should be manualized later
+    file = open("exercise-2.csv")  # should be manualized later
     rawFile = csv.reader(file)    # Reading the csv file into a raw form
     rawData = list(rawFile)       # Converting the raw data into list from.
     return rawData
@@ -90,7 +82,7 @@ def draw(xCords, yCords, xLabel, yLabel, clusterLabel, pointerColor):
 
 def kFinder():
     "This finds the apt K value from the given cluster using gap-statistics"
-    return 3
+    return 4
     # TODO
 
 
