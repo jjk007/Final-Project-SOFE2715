@@ -41,12 +41,11 @@ def cluster():
         calculatedCentroid.append(meanCords(clustered[i]))
 
     if cmp(calculatedCentroid, centroid) == 0:  # Comapre old and new centriods
-        return 0
+        return count
 
     centroid = list(calculatedCentroid)  # Copying new centriod to the old var
     count += 1
     cluster()  # Recursively calling cluster() again and again until convergence
-    print "Number of iterations: "+ str(count)
 
 
 def euclideanDistance(p, q):
@@ -57,7 +56,7 @@ def euclideanDistance(p, q):
 
 def parse():
     "Parses the data sets from the csv file we are given to work with"
-    file = open("exercise-2.csv")  # should be manualized later
+    file = open("./Exercises/exercise-2.csv")  # should be manualized later
     rawFile = csv.reader(file)    # Reading the csv file into a raw form
     rawData = list(rawFile)       # Converting the raw data into list from.
     return rawData
@@ -120,6 +119,7 @@ def toXandY(unorderedData):
 def main():
     "This is the main method were execusion begins"
     global K
+    global count
     K = kFinder()
     names = ["Cluster 1", "Cluster 2", "Cluster 3", "Cluster 4", "Cluster 5"]
     color = ["r", "g", "b", "m", "c"]  # Stores the color values
@@ -138,6 +138,7 @@ def main():
         centroid.append(random.choice(newData))
 
     cluster()  # Executes the algorithm
+    print "Number of iterations: "+ str(count)
 
     # Now we plot them
     for i in range(0, K):
