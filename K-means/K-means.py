@@ -6,17 +6,26 @@ import math
 import matplotlib.pyplot as plot
 
 
-centroid = list()   # Stores the coordinates of centroids we generate
-clustered = list()  # Stores the clustered data in orderered form ,for plotting
-newData = []        # Stores the type converted data
-K = 0               # k is the number of clusters to be develped from the data
-
+centroid = list()           # Stores the random centriods, we generate to start
+calculatedCentroid = list() # Stores the calculated centroids
+clustered = list()          # Stores the clustered data in orderered form
+newData = []                # Stores the type converted data
+K = 0                       # K is the number of clusters
 
 def cluster():
+    count = 0
     "This function performs the k-means clustering algorithm"
+    global centroid
+    global calculatedCentroid
     distance = [0]*K
-    centroidDivided = []
-    centroidDivided.append([])   # Making the list 2D
+    print "pos 1"
+
+    print centroid
+    print calculatedCentroid
+    if cmp(calculatedCentroid, centroid) == 0:
+        print "pos 2"
+        return 0
+
     for val in newData:
         for i in range(0, K):
             distance[i] = euclideanDistance(centroid[i], val)
@@ -28,8 +37,17 @@ def cluster():
         minIndex = distance.index(min(distance))  # Both of these should be
         clustered[minIndex].append(val)           # should be in the outer loop
 
-        # Call the mean funtion each cluster by cluster and save the
-        # new centroid everytime
+
+    print "pos 3"
+    for i in range(0, K):
+        calculatedCentroid.append(meanCords(clustered[i]))
+
+    centroid = list(calculatedCentroid)   # Copying calculated to the old list
+
+    print "pos 4"
+    cluster()  # Recursively calling cluster() again and again until convergence
+    print "pos 5"
+
 
 def euclideanDistance(p, q):
     "This calculates the Euclidean Distance b/w p & q, in the standard way"
@@ -77,7 +95,7 @@ def meanCords(unorderedCluster):
     for i in range(0, listSize):
         totalX += orderedCluster[0][i] # Adds up all the X-cords
     for i in range(0, listSize):
-        totalY += orderedCluster[0][i] # Adds up all the X-cords
+        totalY += orderedCluster[1][i] # Adds up all the Y-cords
     avgX = totalX/listSize
     avgY = totalY/listSize
     newCentroids = [0,0]
@@ -126,8 +144,6 @@ def main():
     # Now we plot them
     for i in range(0, K):
         clustered[i] = toXandY(clustered[i])  # Seperates X and Y cords
-        print clustered[i]
-        print ""
         draw(clustered[i][0], clustered[i][1],
              labels[0], labels[1], names[i], color[i])
 
