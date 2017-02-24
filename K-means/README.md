@@ -6,7 +6,7 @@
 │   ├── exercise-3.csv  
 │   ├── exercise-4.csv  
 │   ├── exercise-5.csv  
-│   └── exercise-6.csv  
+│     └── exercise-6.csv  
 ├── Resources  
 │   └── K-means cluster.png  
 └── Test  
