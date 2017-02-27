@@ -2,6 +2,8 @@
 
 import csv
 import random
+import time
+from timeit import default_timer as timer
 import math
 import matplotlib.pyplot as plot
 
@@ -57,7 +59,7 @@ def euclideanDistance(p, q):
 
 def parse():
     "Parses the data sets from the csv file we are given to work with"
-    file = open("./Exercises/exercise-5.csv")  # should be manualized later
+    file = open("./Exercises/exercise-2.csv")  # should be manualized later
     rawFile = csv.reader(file)    # Reading the csv file into a raw form
     rawData = list(rawFile)       # Converting the raw data into list from.
     return rawData
@@ -82,7 +84,8 @@ def draw(xCords, yCords, xLabel, yLabel, clusterLabel, pointerColor):
 
 def kFinder():
     "This finds the apt K value from the given cluster using gap-statistics"
-    return random.randint(2, 6)
+    return 4
+    # return random.randint(2, 5)
     # TODO
 
 
@@ -121,6 +124,7 @@ def main():
     "This is the main method were execusion begins"
     global K
     global count
+    start = timer()
     K = kFinder()
     names = ["Cluster 1", "Cluster 2", "Cluster 3", "Cluster 4", "Cluster 5"]
     color = ["r", "g", "b", "m", "c"]  # Stores the color values
@@ -135,14 +139,15 @@ def main():
     for i in range(0, K):
         centroid.append(random.choice(newData))
     cluster()  # Executes the algorithm
+    end = timer()
     print "Number of iterations: " + str(count)
+    print "Amount of time elapsed: " + str(end-start)+ " seconds"
     # Now we plot them
     for i in range(0, K):
         clustered[i] = toXandY(clustered[i])  # Seperates X and Y cords
         draw(clustered[i][0], clustered[i][1],
              labels[0], labels[1], names[i], color[i])
     plot.show()  # Shows the graph that is drawn in memory
-
 
 if __name__ == "__main__":
     main()
