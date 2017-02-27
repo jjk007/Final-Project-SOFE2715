@@ -21,4 +21,8 @@
          └── toXandY-Tester.py
      
      #+END_SRC
+** Python Dependencies
 
+- matplotlib   -> For plotting the data
+- csv          -> For parsing the csv files
+- timeit       -> For the timer
