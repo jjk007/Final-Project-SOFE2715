@@ -2,4 +2,4 @@
 
 Selections
  - K-means Clustering
- - Face localization
+ - Face localization --> I don't know
