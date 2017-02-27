@@ -2,7 +2,7 @@
 ** File tree
      #+BEGIN_SRC txt
      .
-     ├── K-means.py  -> Mail algorithm file.
+     ├── K-means.py  -> *Mail algorithm file.*
      ├── Exercises
      │   ├── exercise-1.csv
      │   ├── exercise-2.csv
