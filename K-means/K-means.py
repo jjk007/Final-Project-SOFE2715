@@ -11,8 +11,8 @@ centroid = list()            # Stores the random centriods, we generate
 calculatedCentroid = list()  # Stores the calculated centroids
 clustered = list()           # Stores the clustered data in orderered form
 newData = []                 # Stores the type converted data in float
-K = 0                       # K is the number of clusters
-count = 0
+K = 0                        # K is the number of clusters
+count = 0                    # Number of iterations
 
 
 def cluster():
@@ -81,13 +81,6 @@ def draw(xCords, yCords, xLabel, yLabel, clusterLabel, pointerColor):
     plot.legend()
 
 
-def kFinder():
-    "This finds the apt K value from the given cluster using gap-statistics"
-    return 4
-    # return random.randint(2, 5)
-    # TODO
-
-
 def meanCords(unorderedCluster):
     "This finds the mean of the clusters to reassign the centroids"
     orderedCluster = toXandY(unorderedCluster)
@@ -124,7 +117,7 @@ def main():
     global K
     global count
     start = timer()
-    K = kFinder()
+    K = 4
     names = ["Cluster 1", "Cluster 2", "Cluster 3", "Cluster 4", "Cluster 5"]
     color = ["r", "g", "b", "m", "c"]  # Stores the color values
     data = parse()                     # Calling the parse funtion we made
@@ -147,6 +140,7 @@ def main():
         draw(clustered[i][0], clustered[i][1],
              labels[0], labels[1], names[i], color[i])
     plot.show()  # Shows the graph that is drawn in memory
+
 
 if __name__ == "__main__":
     main()
