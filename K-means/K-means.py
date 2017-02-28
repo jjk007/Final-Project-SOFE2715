@@ -2,7 +2,6 @@
 
 import csv
 import random
-import time
 from timeit import default_timer as timer
 import math
 import matplotlib.pyplot as plot
@@ -59,7 +58,7 @@ def euclideanDistance(p, q):
 
 def parse():
     "Parses the data sets from the csv file we are given to work with"
-    file = open("./Exercises/exercise-2.csv")  # should be manualized later
+    file = open("./Exercises/exercise-6.csv")  # should be manualized later
     rawFile = csv.reader(file)    # Reading the csv file into a raw form
     rawData = list(rawFile)       # Converting the raw data into list from.
     return rawData
@@ -140,7 +139,7 @@ def main():
         centroid.append(random.choice(newData))
     cluster()  # Executes the algorithm
     end = timer()
-    print "Number of iterations: " + str(count)
+    print "Number of iterations  : " + str(count)
     print "Amount of time elapsed: " + str(end-start)+ " seconds"
     # Now we plot them
     for i in range(0, K):
