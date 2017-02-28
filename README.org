@@ -2,4 +2,5 @@
 
 Selections
  - K-means Clustering
- - Face localization --> I don't know
+ - +Face localization+
+ - Convex Hull
