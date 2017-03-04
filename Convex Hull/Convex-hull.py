@@ -34,14 +34,6 @@ def parse():
     rawFile = csv.reader(file)    # Reading the csv file into a raw form
     rawData = list(rawFile)       # Converting the raw data into list from.
     return rawData
-    '''
-    Csv reader reads the file line by line, and for the files
-    that are given to us first line is always meta data and we don't want
-    that to be taken into clustering as well. Which is why we use the list
-    from index 1 rather than 0.
-    Since we have 2 columns, when converted into list/array it is 2D list.
-    Here, index 0 in each line is x-coordinate, index 1 is the y-coordinate
-    '''
 
 
 def main():
@@ -56,7 +48,7 @@ def main():
 
     # Timer
     end = timer()
-    print "Amount of time elapsed: " + str(end-start)+ " seconds"
+    print "Amount of time elapsed: " + str(end-start) + " seconds"
 
 
 if __name__ == "__main__":
