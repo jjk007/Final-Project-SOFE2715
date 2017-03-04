@@ -45,7 +45,6 @@ def main():
         newData.append([])          # Add a new sublsit every time
         for j in range(0, 2):       # Append converted data to the new list
             newData[i].append(float(data[i][j]))
-
     # Timer
     end = timer()
     print "Amount of time elapsed: " + str(end-start) + " seconds"
