@@ -93,7 +93,7 @@ def meanCords(unorderedCluster):
         totalY += orderedCluster[1][i] # Adds up all the Y-cords
     avgX = totalX/listSize
     avgY = totalY/listSize
-    newCentroids = [0,0]
+    newCentroids = [0, 0]
     newCentroids[0] = avgX
     newCentroids[1] = avgY
     return newCentroids  # Return the mean of the x or y co-ordinates
