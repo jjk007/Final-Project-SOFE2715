@@ -46,7 +46,7 @@ def main():
     global newData
     start = timer()
     data = parse()                  # Calling the parse funtion we made
-    labels = data.pop(0)
+    data.pop(0)                     # Necessary evil, discard the labels
     listSize = len(data)
     for i in range(0, listSize):    # Converting the string list to float
         newData.append([])          # Add a new sublsit every time
@@ -58,7 +58,7 @@ def main():
 
     # Timer
     end = timer()
-    print "Amount of time elapsed to service " + labels[0] + " and " + labels[1] + " : " + str(end-start) + " seconds"
+    print "Time elapsed: " + str(end-start) + " seconds"
 
 
 if __name__ == "__main__":
