@@ -1,6 +1,8 @@
 #!/usr/bin/env python2.7
 # thou shall not cross 80 columns in thy file
 
+# Concex-Hull creation using Graham Scan Algorithm
+
 from timeit import default_timer as timer
 import math
 import matplotlib.pyplot as plt
@@ -12,8 +14,8 @@ newData = []
 def toXandY(unorderedData):
     "This method converts seperates x and y co-ordinates for plotting"
     orderedData = []
-    orderedData.append([])        # Add a new sublsit every time
-    orderedData.append([])        # Add a new sublsit every time
+    orderedData.append([])        # Add a new sublist every time
+    orderedData.append([])        # Add a new sublist every time
     listSize = len(unorderedData)
     for x in range(0, listSize):
         orderedData[0].append(unorderedData[x][0])  # Seperates the x-cords
