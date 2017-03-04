@@ -1,3 +1,4 @@
+#!/usr/bin/env python2.7
 # thou shall not cross 80 columns in thy file
 
 import csv
