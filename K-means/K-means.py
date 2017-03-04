@@ -59,7 +59,7 @@ def euclideanDistance(p, q):
 
 def parse():
     "Parses the data sets from the csv file we are given to work with"
-    file = open("./Exercises/exercise-6.csv")  # should be manualized later
+    file = open("./Exercises/exercise-5.csv")  # should be manualized later
     rawFile = csv.reader(file)    # Reading the csv file into a raw form
     rawData = list(rawFile)       # Converting the raw data into list from.
     return rawData
@@ -77,7 +77,7 @@ def draw(xCords, yCords, xLabel, yLabel, clusterLabel, pointerColor):
     "This method draws the clusterd plot using Matplotlib"
     plot.xlabel(xLabel)
     plot.ylabel(yLabel)
-    plot.title("Initial Plot")
+    plot.title("K-means Clustered")
     plot.scatter(xCords, yCords, color=pointerColor, s=10, label=clusterLabel)
     plot.legend()
 

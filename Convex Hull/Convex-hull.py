@@ -3,7 +3,7 @@
 
 from timeit import default_timer as timer
 import math
-import matplotlib.pyplot as plot
+import matplotlib.pyplot as plt
 import csv
 
 newData = []
@@ -34,9 +34,21 @@ def locate_min(a):
             if smallest == element]
 
 
+def draw(xCords, yCords, xLabel, yLabel, what):
+    "This method draws the Convex-Hull plot using Matplotlib"
+    plt.xlabel(xLabel)
+    plt.ylabel(yLabel)
+    plt.title("Convex-Hull")
+    if what == 1:
+        plt.scatter(xCords, yCords, color="r", s=20)
+    else:
+        plt.plot(xCords, yCords, '-o')  # Make the boundaries
+    # plt.legend()
+
+
 def parse():
     "Parses the data sets from the csv file we are given to work with"
-    file = open("./Exercises/exercise-6.csv")  # should be manualized later
+    file = open("./Exercises/exercise-2.csv")  # should be manualized later
     rawFile = csv.reader(file)    # Reading the csv file into a raw form
     rawData = list(rawFile)       # Converting the raw data into list from.
     return rawData
@@ -46,19 +58,21 @@ def main():
     global newData
     start = timer()
     data = parse()                  # Calling the parse funtion we made
-    data.pop(0)                     # Necessary evil, discard the labels
+    labels = data.pop(0)            # Necessary evil
     listSize = len(data)
     for i in range(0, listSize):    # Converting the string list to float
         newData.append([])          # Add a new sublsit every time
         for j in range(0, 2):       # Append converted data to the new list
             newData[i].append(float(data[i][j]))
     # Finding the starting point P
-    tempData = toXandY(newData)  # tempData -> [[Xs][Ys]]
+    tempData = toXandY(newData)     # tempData -> [[Xs][Ys]]
     P = tempData[1].index(min(tempData[1]))  # Locating the minimum y-cord
-
-    # Timer
     end = timer()
+
+    draw(tempData[0], tempData[1], labels[0], labels[1], 1)
+
     print "Time elapsed: " + str(end-start) + " seconds"
+    plt.show()
 
 
 if __name__ == "__main__":
