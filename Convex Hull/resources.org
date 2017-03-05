@@ -1,2 +1,3 @@
 *  Resources
 - [[https://en.wikipedia.org/wiki/Graham_scan][Wiki]]
+- [[https://youtu.be/VP9ylElm1yY?t=177][Graham Scan - Video]]

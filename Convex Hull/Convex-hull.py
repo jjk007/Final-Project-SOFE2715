@@ -9,6 +9,32 @@ import matplotlib.pyplot as plt
 import csv
 
 newData = []
+hull = []   # Used Like a stack store the hull points
+
+
+def convex():
+    pass
+    # TODO
+
+
+def leftOrRight():
+    pass
+    # TODO
+
+
+def sortI(data):
+    "This method sort the array using insertion sort"
+    print "\nSorting started"
+    size = len(data)
+    for i in range(0, size):
+        CurrentItem = data[i]
+        # j is the divider of the sorted and unsorted portion
+        j = i-1
+        while j >= 0 and data[j] > CurrentItem:
+            data[j+1] = data[j]  # Swap happens here.
+            j = j-1  # incrementing the divider because we swapped values
+            data[j+1] = CurrentItem
+    return data  # Method ends here
 
 
 def toXandY(unorderedData):
@@ -42,9 +68,9 @@ def draw(xCords, yCords, xLabel, yLabel, what):
     plt.ylabel(yLabel)
     plt.title("Convex-Hull")
     if what == 1:
-        plt.scatter(xCords, yCords, color="r", s=20)
+        plt.scatter(xCords, yCords, color="g", s=20)
     else:
-        plt.plot(xCords, yCords, '-o')  # Make the boundaries
+        plt.plot(xCords, yCords, '-o',  color="r")  # Make the boundaries
     # plt.legend()
 
 
