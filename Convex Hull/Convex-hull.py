@@ -17,13 +17,15 @@ def convex():
     # TODO
 
 
-def leftOrRight():
-    pass
-    # TODO
+def leftOrRight(p1, p2, p3):
+    cal1 = (p2[0] - p1[0]) * (p3[1] - p1[1])
+    cal2 = (p2[1] - p1[1]) * (p3[0] - p1[0])
+    diff = cal1 - cal2
+    return diff
 
 
 def sortI(data):
-    "This method sort the array using insertion sort"
+    "This method sorts the array using insertion sort"
     print "\nSorting started"
     size = len(data)
     for i in range(0, size):
@@ -99,6 +101,7 @@ def main():
 
     draw(tempData[0], tempData[1], labels[0], labels[1], 1)
 
+    print P
     print "Time elapsed: " + str(end-start) + " seconds"
     plt.show()
 
