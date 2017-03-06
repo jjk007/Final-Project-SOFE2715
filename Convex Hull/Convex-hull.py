@@ -16,17 +16,34 @@ def scan(data):
     hull.append([])      # For the Y-coordinates
     hull[0].append(data[0].pop(0))
     hull[1].append(data[1].pop(0))
-    hullCount = 1        # Number of points in the hull
+    listSize = len(data[0])
+    M = 1        # Number of points in the hull
     '''
-    The first point, or the starting point is always in the hull, so hullcount = 1
+    The first point, or the starting point is always in the hull, so M = 1
     '''
+    i = 2
+    while i <= listSize:
+        print 1
+        while (leftOrRight(data[0][M-1], data[1][M-1],
+                           data[0][M], data[1][M],
+                           data[0][i], data[1][i]) <= 0):
+            if M > 1:
+                M -= 1
+                continue
+            elif i == listSize:
+                break
+            else:
+                i += 1
+            M += 1
+        hull[0].append(data[0].pop(M))
+        hull[1].append(data[1].pop(M))
     return hull, data
 
 
-def leftOrRight(p1, p2, p3):
+def leftOrRight(p1x, p1y, p2x, p2y, p3x, p3y):
     "Used to determine the right path for the convex points"
-    cal1 = (p2[0] - p1[0]) * (p3[1] - p1[1])
-    cal2 = (p2[1] - p1[1]) * (p3[0] - p1[0])
+    cal1 = (p2x - p1x) * (p3y - p1y)
+    cal2 = (p2y - p1y) * (p3x - p1x)
     diff = cal1 - cal2
     return diff
 
@@ -46,7 +63,6 @@ def sortI(base, data):
     because it sorts the data based on the given base, not the data itself.
     Here it sorts the data based on the slope array passed as the base
      '''
-    print "\nSorting started"
     size = len(base)
     for i in range(1, size):
         CurrentItem = base[i]
@@ -140,7 +156,8 @@ def main():
     hull, DataXandY = scan(DataXandY)   # Call the graham scan algorithm
 
     end = timer()
-    draw(DataXandY[0], DataXandY[1], labels[0], labels[1], 2)
+    draw(DataXandY[0], DataXandY[1], labels[0], labels[1], 1)
+    draw(hull[0], hull[1], labels[0], labels[1], 2)
     plt.show()
     print "Time elapsed: " + str(end-start) + " seconds" # Fix timer placement!
 
