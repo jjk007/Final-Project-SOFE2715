@@ -14,6 +14,12 @@ def scan(data):
     hull = []            # Used like a stack here
     hull.append([])      # For the X-coordinates
     hull.append([])      # For the Y-coordinates
+    hull[0].append(data[0].pop(0))
+    hull[1].append(data[1].pop(0))
+    hullCount = 1        # Number of points in the hull
+    '''
+    The first point, or the starting point is always in the hull, so hullcount = 1
+    '''
     return hull, data
 
 
@@ -23,6 +29,15 @@ def leftOrRight(p1, p2, p3):
     cal2 = (p2[1] - p1[1]) * (p3[0] - p1[0])
     diff = cal1 - cal2
     return diff
+
+
+def order(data, P):
+    "This method orders the given data so that, index P comes first"
+    while P != 0:
+        data[0].append(data[0].pop(0))  # Remove xCord add it to the end
+        data[1].append(data[1].pop(0))  # Remove yCord add it to the end
+        P -= 1                          # Do this until Pth element move to 0
+    return data
 
 
 def sortI(base, data):
@@ -42,7 +57,7 @@ def sortI(base, data):
             swap(data, j+1, j)   # Swap data array
             j = j-1  # incrementing the divider because we swapped values
             base[j+1] = CurrentItem
-    return data  # Method ends here
+    return data, base  # Method ends here
 
 
 def toXandY(unorderedData):
@@ -93,7 +108,7 @@ def swap(data, i, j):
 
 def parse():
     "Parses the data sets from the csv file we are given to work with"
-    file = open("./Exercises/exercise-2.csv")  # should be manualized later
+    file = open("./Exercises/exercise-1.csv")  # should be manualized later
     rawFile = csv.reader(file)    # Reading the csv file into a raw form
     rawData = list(rawFile)       # Converting the raw data into list from.
     return rawData
@@ -115,7 +130,12 @@ def main():
     DataXandY = swap(DataXandY, 0, P)
     P = 0                            # Because it was swapped
     slopes = slope(DataXandY, P)
-    DataXandY = sortI(slopes, DataXandY)  # Sort the points ccw
+    DataXandY, slopes = sortI(slopes, DataXandY)  # Sort the points ccw
+    PIndex = slopes.index(0)
+    DataXandY = order(DataXandY, PIndex)  # Order data so that P comes first
+
+    # DataXandY[0].append(DataXandY[0][0])  # Add the first x at end- Full circle
+    # DataXandY[1].append(DataXandY[1][0])  # Add the first y at end- Full circle
 
     hull, DataXandY = scan(DataXandY)   # Call the graham scan algorithm
 
