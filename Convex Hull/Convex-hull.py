@@ -17,26 +17,57 @@ def scan(data):
     hull[0].append(data[0].pop(0))
     hull[1].append(data[1].pop(0))
     listSize = len(data[0])
-    M = 1        # Number of points in the hull
     '''
     The first point, or the starting point is always in the hull, so M = 1
     '''
-    i = 2
-    while i <= listSize:
-        print 1
+    M = 1        # Number of points in the hull
+    i = 1
+    q = 0
+    while i < listSize:
+        print i
         while (leftOrRight(data[0][M-1], data[1][M-1],
                            data[0][M], data[1][M],
-                           data[0][i], data[1][i]) <= 0):
+                           data[0][i], data[1][i]) > 0):
             if M > 1:
                 M -= 1
                 continue
             elif i == listSize:
-                break
+                return hull, data
             else:
                 i += 1
             M += 1
+        print "Hull apppended"
         hull[0].append(data[0].pop(M))
         hull[1].append(data[1].pop(M))
+
+
+def scan2(data):
+    "Custom method, second take on scanning"
+    hull = []            # Used like a stack here
+    hull.append([])      # For the X-coordinates
+    hull.append([])      # For the Y-coordinates
+    hull[0].append(data[0].pop(0))
+    hull[1].append(data[1].pop(0))
+    listSize = len(data[0])
+    i = 0
+    while True:
+        while i < listSize:
+            if leftOrRight2(data[0][M-1], data[1][M-1],
+                           data[0][M], data[1][M],
+                           data[0][i], data[1][i]) == 'left':
+                hull[0].append(data[0].pop(0))
+                hull[1].append(data[1].pop(0))
+                i += 1
+            elif leftOrRight2(data[0][M-1], data[1][M-1],
+                           data[0][M], data[1][M],
+                           data[0][i], data[1][i]) == 'right':
+                # Backtracking
+                hull[0].pop()
+                hull[1].pop()
+                i -= 1
+            else:  # The points are collinear
+                i += 1
+                continue
     return hull, data
 
 
@@ -46,6 +77,19 @@ def leftOrRight(p1x, p1y, p2x, p2y, p3x, p3y):
     cal2 = (p2y - p1y) * (p3x - p1x)
     diff = cal1 - cal2
     return diff
+
+
+def leftOrRight2(p1x, p1y, p2x, p2y, p3x, p3y):
+    "Used to determine the right path for the convex points"
+    cal1 = (p2x - p1x) * (p3y - p1y)
+    cal2 = (p2y - p1y) * (p3x - p1x)
+    diff = cal1 - cal2
+    if diff < 0:
+        return 'right'
+    elif diff > 0:
+        return 'left'
+    else:
+        return 1
 
 
 def order(data, P):
