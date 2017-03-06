@@ -9,15 +9,16 @@ import matplotlib.pyplot as plt
 import csv
 
 newData = []
-hull = []   # Used Like a stack store the hull points
 
 
-def convex():
-    pass
+def scan(data):
+    hull = []    # Used like a stack here
+    return hull, data
     # TODO
 
 
 def leftOrRight(p1, p2, p3):
+    "Used to determine the right path for the convex points"
     cal1 = (p2[0] - p1[0]) * (p3[1] - p1[1])
     cal2 = (p2[1] - p1[1]) * (p3[0] - p1[0])
     diff = cal1 - cal2
@@ -25,10 +26,14 @@ def leftOrRight(p1, p2, p3):
 
 
 def sortI(base, data):
-    "This method sorts the array using insertion sort"
+    '''
+    This method sorts the array using insertion sort, the sort is special
+    because it sorts the data based on the given base, not the data itself.
+    Here it sorts the data based on the slope array passed as the base
+     '''
     print "\nSorting started"
     size = len(base)
-    for i in range(0, size):
+    for i in range(1, size):
         CurrentItem = base[i]
         # j is the divider of the sorted and unsorted portion
         j = i-1
@@ -37,7 +42,6 @@ def sortI(base, data):
             swap(data, j+1, j)   # Swap data array
             j = j-1  # incrementing the divider because we swapped values
             base[j+1] = CurrentItem
-
     return data  # Method ends here
 
 
@@ -60,16 +64,6 @@ def euclideanDistance(p, q):
     return distance
 
 
-def locate_min(a):
-    smallest = min(a)  # Locating all minmum elements of the passed list
-    return [index for index, element in enumerate(a)
-            if smallest == element]
-
-
-def dotProduct(data, P=0):
-    "This method calculates the dotproducts"
-
-
 def slope(data, P=0):
     "Calculates slopes between data-points and P"
     m = []
@@ -77,7 +71,7 @@ def slope(data, P=0):
     listSize = len(data[0])
     for i in range(1, listSize): #Starting from 1 excluding P point
         m.append ((data[1][i] - data[1][P]) / (data[0][i] - data[0][P]))
-    return m # Return the lsit with slopes
+    return m # Return the list with slopes
 
 
 def draw(xCords, yCords, xLabel, yLabel, what):
@@ -121,7 +115,9 @@ def main():
     DataXandY = swap(DataXandY, 0, P)
     P = 0                            # Because it was swapped
     slopes = slope(DataXandY, P)
-    DataXandY = sortI(slopes, DataXandY)
+    DataXandY = sortI(slopes, DataXandY)  # Sort the points ccw
+
+    hull, DataXandY = scan(DataXandY)   # Call the graham scan algorithm
 
     end = timer()
     draw(DataXandY[0], DataXandY[1], labels[0], labels[1], 2)
@@ -131,10 +127,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-    '''
-     NOT COMPLETE
-    '''
