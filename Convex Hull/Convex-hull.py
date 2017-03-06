@@ -4,17 +4,17 @@
 # Concex-Hull creation using Graham Scan Algorithm
 
 from timeit import default_timer as timer
+import csv
 import math
 import matplotlib.pyplot as plt
-import csv
-
-newData = []
 
 
 def scan(data):
-    hull = []    # Used like a stack here
+    "This method generates the convex hull using Graham scan algorithm"
+    hull = []            # Used like a stack here
+    hull.append([])      # For the X-coordinates
+    hull.append([])      # For the Y-coordinates
     return hull, data
-    # TODO
 
 
 def leftOrRight(p1, p2, p3):
@@ -70,7 +70,7 @@ def slope(data, P=0):
     m.append(0) # Dummy value for Pth Value slope
     listSize = len(data[0])
     for i in range(1, listSize): #Starting from 1 excluding P point
-        m.append ((data[1][i] - data[1][P]) / (data[0][i] - data[0][P]))
+        m.append((data[1][i] - data[1][P])/(data[0][i] - data[0][P]))
     return m # Return the list with slopes
 
 
@@ -100,7 +100,7 @@ def parse():
 
 
 def main():
-    global newData
+    newData = []
     start = timer()
     data = parse()                  # Calling the parse funtion we made
     labels = data.pop(0)            # Necessary evil
