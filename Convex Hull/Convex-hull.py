@@ -24,18 +24,20 @@ def leftOrRight(p1, p2, p3):
     return diff
 
 
-def sortI(data):
+def sortI(base, data):
     "This method sorts the array using insertion sort"
     print "\nSorting started"
-    size = len(data)
+    size = len(base)
     for i in range(0, size):
-        CurrentItem = data[i]
+        CurrentItem = base[i]
         # j is the divider of the sorted and unsorted portion
         j = i-1
-        while j >= 0 and data[j] > CurrentItem:
-            data[j+1] = data[j]  # Swap happens here.
+        while j >= 0 and base[j] > CurrentItem:
+            base[j+1] = base[j]  # Swap base array
+            swap(data, j+1, j)   # Swap data array
             j = j-1  # incrementing the divider because we swapped values
-            data[j+1] = CurrentItem
+            base[j+1] = CurrentItem
+
     return data  # Method ends here
 
 
@@ -64,6 +66,20 @@ def locate_min(a):
             if smallest == element]
 
 
+def dotProduct(data, P=0):
+    "This method calculates the dotproducts"
+
+
+def slope(data, P=0):
+    "Calculates slopes between data-points and P"
+    m = []
+    m.append(0) # Dummy value for Pth Value slope
+    listSize = len(data[0])
+    for i in range(1, listSize): #Starting from 1 excluding P point
+        m.append ((data[1][i] - data[1][P]) / (data[0][i] - data[0][P]))
+    return m # Return the lsit with slopes
+
+
 def draw(xCords, yCords, xLabel, yLabel, what):
     "This method draws the Convex-Hull plot using Matplotlib"
     plt.xlabel(xLabel)
@@ -72,9 +88,14 @@ def draw(xCords, yCords, xLabel, yLabel, what):
     if what == 1:
         plt.scatter(xCords, yCords, color="g", s=20)
     else:
-        plt.plot(xCords, yCords, '-o',  color="r")  # Make the boundaries
+        plt.plot(xCords, yCords, '-o', color="r")  # Make the boundaries
     # plt.legend()
 
+def swap(data, i, j):
+    "This method swaps the two points i and j in the list data"
+    data[0][i], data[0][j] = data[0][j], data[0][i]  # Swap x-Cords
+    data[1][i], data[1][j] = data[1][j], data[1][i]  # Swap y-cords
+    return data
 
 def parse():
     "Parses the data sets from the csv file we are given to work with"
@@ -95,16 +116,25 @@ def main():
         for j in range(0, 2):       # Append converted data to the new list
             newData[i].append(float(data[i][j]))
     # Finding the starting point P
-    tempData = toXandY(newData)     # tempData -> [[Xs][Ys]]
-    P = tempData[1].index(min(tempData[1]))  # Locating the minimum y-cord
+    DataXandY = toXandY(newData)     # DataXandY -> [[Xs][Ys]]
+    P = DataXandY[1].index(min(DataXandY[1]))  # Locating the minimum y-cord
+    DataXandY = swap(DataXandY, 0, P)
+    P = 0                            # Because it was swapped
+    slopes = slope(DataXandY, P)
+    DataXandY = sortI(slopes, DataXandY)
+
     end = timer()
-
-    draw(tempData[0], tempData[1], labels[0], labels[1], 1)
-
-    print P
-    print "Time elapsed: " + str(end-start) + " seconds"
+    draw(DataXandY[0], DataXandY[1], labels[0], labels[1], 2)
     plt.show()
+    print "Time elapsed: " + str(end-start) + " seconds" # Fix timer placement!
 
 
 if __name__ == "__main__":
     main()
+
+
+
+
+    '''
+     NOT COMPLETE
+    '''
