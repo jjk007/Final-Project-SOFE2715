@@ -1,7 +1,7 @@
 #!/usr/bin/env python2.7
 # thou shall not cross 80 columns in thy file
 
-# Concex-Hull creation using Graham Scan Algorithm
+# Convex-Hull creation using Graham Scan Algorithm
 
 from timeit import default_timer as timer
 import csv
@@ -10,39 +10,7 @@ import matplotlib.pyplot as plt
 
 
 def scan(data):
-    "This method generates the convex hull using Graham scan algorithm"
-    hull = []            # Used like a stack here
-    hull.append([])      # For the X-coordinates
-    hull.append([])      # For the Y-coordinates
-    hull[0].append(data[0].pop(0))
-    hull[1].append(data[1].pop(0))
-    listSize = len(data[0])
-    '''
-    The first point, or the starting point is always in the hull, so M = 1
-    '''
-    M = 1        # Number of points in the hull
-    i = 1
-    q = 0
-    while i < listSize:
-        print i
-        while (leftOrRight(data[0][M-1], data[1][M-1],
-                           data[0][M], data[1][M],
-                           data[0][i], data[1][i]) > 0):
-            if M > 1:
-                M -= 1
-                continue
-            elif i == listSize:
-                return hull, data
-            else:
-                i += 1
-            M += 1
-        print "Hull apppended"
-        hull[0].append(data[0].pop(M))
-        hull[1].append(data[1].pop(M))
-
-
-def scan2(data):
-    "Custom method, second take on scanning"
+    "This method uses graham-scan to create a convex hull from the given points"
     hull = []            # Used like a stack here
     hull.append([])      # For the X-coordinates
     hull.append([])      # For the Y-coordinates
@@ -50,36 +18,40 @@ def scan2(data):
     hull[1].append(data[1].pop(0))
     listSize = len(data[0])
     i = 0
-    while True:
-        while i < listSize:
-            if leftOrRight2(data[0][M-1], data[1][M-1],
-                           data[0][M], data[1][M],
-                           data[0][i], data[1][i]) == 'left':
-                hull[0].append(data[0].pop(0))
-                hull[1].append(data[1].pop(0))
-                i += 1
-            elif leftOrRight2(data[0][M-1], data[1][M-1],
-                           data[0][M], data[1][M],
-                           data[0][i], data[1][i]) == 'right':
-                # Backtracking
-                hull[0].pop()
-                hull[1].pop()
-                i -= 1
-            else:  # The points are collinear
-                i += 1
-                continue
-    return hull, data
+    M = 1 # This Stores the size of the hull stack
+    while i < listSize:
+        print "i = "+ str(i)
+        hull[0].append(data[0].pop(0))  # Pop the first most item, add to hull
+        hull[1].append(data[1].pop(0))  # Pop the first most item, add to hull
+        M += 1
+        print "M = "+ str(M)
+        print "Hull appended"
+        if leftOrRight(hull[0][M-1], hull[1][M-1],
+                       data[0][M], data[1][M],
+                       data[0][i], data[1][i]) == 'left':
+            i += 1
+            print "i = "+ str(i)
+        elif leftOrRight(hull[0][M-1], hull[1][M-1],
+                         data[0][M], data[1][M],
+                         data[0][i], data[1][i]) == 'right':
+            # Backtracking
+            data[0].insert(i-1, hull[0].pop())
+            data[1].insert(i-1, hull[1].pop())
+            M -= 1
+            i += 1
+            print "i = "+ str(i)
+            print "M = "+ str(M)
+            print "Hull poped and inserted into data"
+        else:  # The points are collinear
+            i += 1
+            print "Points are collinear"
+            print "i = "+ str(i)
+        if i == listSize:
+            return hull, data
+        print "Iteration done once"
 
 
 def leftOrRight(p1x, p1y, p2x, p2y, p3x, p3y):
-    "Used to determine the right path for the convex points"
-    cal1 = (p2x - p1x) * (p3y - p1y)
-    cal2 = (p2y - p1y) * (p3x - p1x)
-    diff = cal1 - cal2
-    return diff
-
-
-def leftOrRight2(p1x, p1y, p2x, p2y, p3x, p3y):
     "Used to determine the right path for the convex points"
     cal1 = (p2x - p1x) * (p3y - p1y)
     cal2 = (p2y - p1y) * (p3x - p1x)
@@ -175,6 +147,7 @@ def parse():
 
 
 def main():
+    print ""
     newData = []
     start = timer()
     data = parse()                  # Calling the parse funtion we made

@@ -133,7 +133,7 @@ def main():
     # These are the randomly picked centroids, should be re-calculated later
     for i in range(0, K):
         centroid.append(random.choice(newData))
-    cluster()  # Executes the algorithm
+    cluster()  # Executes the main algorithm
     end = timer()
     print "Number of iterations  : " + str(count)
     print "Amount of time elapsed: " + str(end-start)+ " seconds"
