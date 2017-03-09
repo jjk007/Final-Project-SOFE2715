@@ -11,9 +11,12 @@ import matplotlib.pyplot as plt
 
 def scan(data):
     "This method uses graham-scan to create a convex hull from the given points"
-    hull = []            # Used like a stack here
-    hull.append([])      # For the X-coordinates
-    hull.append([])      # For the Y-coordinates
+    hull = []               # Used like a stack here
+    hull.append([])         # For the X-coordinates
+    hull.append([])         # For the Y-coordinates
+    newPoints = []          # For storing the unused points
+    newPoints.append([])    # For the X-coordinates
+    newPoints.append([])    # For the Y-coordinates
     hull[0].append(data[0].pop(0))
     hull[1].append(data[1].pop(0))
     M = 1 # This Stores the size of the hull stack
@@ -21,7 +24,7 @@ def scan(data):
         hull[0].append(data[0].pop(0))  # Pop the first most item, add to hull
         hull[1].append(data[1].pop(0))  # Pop the first most item, add to hull
         if len(data[0]) == 0:
-            return hull # This is true when all points are serviced
+            return hull, newPoints # This is true when all points are serviced
         M += 1
         print len(data[0])
         if leftOrRight(hull[0][M-2], hull[1][M-2],
@@ -33,8 +36,8 @@ def scan(data):
                          data[0][0], data[1][0]) == 'right':
             print "right"
             # Backtracking
-            hull[0].pop()
-            hull[1].pop()
+            newPoints[0].append(hull[0].pop())
+            newPoints[1].append(hull[1].pop())
             M -= 1
         else:  # The points are collinear
             continue
@@ -167,14 +170,15 @@ def main():
     DataXandY = order(DataXandY, PIndex)  # Order data so that P comes first
 
 
-    hull = scan(DataXandY)   # Call the graham scan algorithm
+    hull, newPoints = scan(DataXandY)   # Call the graham scan algorithm
+    print newPoints
 
-    # hull[0].append(hull[0][0])  # Add the first x at end- Full circle
-    # hull[1].append(hull[1][0])  # Add the first y at end- Full circle
+    hull[0].append(hull[0][0])  # Add the first x at end- Full circle
+    hull[1].append(hull[1][0])  # Add the first y at end- Full circle
 
     end = timer()
     draw(hull[0], hull[1], labels[0], labels[1], 2) # Draw the hull
-    draw(DataXandY[0], DataXandY[1], labels[0], labels[1], 1)
+    draw(newPoints[0], newPoints[1], labels[0], labels[1], 1)
     plt.show()
     print "Time elapsed: " + str(end-start) + " seconds" # Fix timer placement!
 
