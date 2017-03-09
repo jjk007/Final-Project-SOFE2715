@@ -17,30 +17,27 @@ def scan(data):
     hull[0].append(data[0].pop(0))
     hull[1].append(data[1].pop(0))
     M = 1 # This Stores the size of the hull stack
-    while not isEmpty(data[0]): # This is true when all points are serviced
+    while True: 
         hull[0].append(data[0].pop(0))  # Pop the first most item, add to hull
         hull[1].append(data[1].pop(0))  # Pop the first most item, add to hull
+        if len(data[0]) == 0:
+            return hull # This is true when all points are serviced
         M += 1
-        print "M = "+ str(M)
-        print "Hull appended"
+        print len(data[0])
         if leftOrRight(hull[0][M-2], hull[1][M-2],
-                       data[0][M-1], data[1][M-1],
+                       hull[0][M-1], hull[1][M-1],
                        data[0][0], data[1][0]) == 'left':
             print "left"
         elif leftOrRight(hull[0][M-2], hull[1][M-2],
-                         data[0][M-1], data[1][M-1],
+                         hull[0][M-1], hull[1][M-1],
                          data[0][0], data[1][0]) == 'right':
             print "right"
             # Backtracking
             hull[0].pop()
             hull[1].pop()
             M -= 1
-            print "M = "+ str(M)
         else:  # The points are collinear
-            print "Iteration done once"
             continue
-        print "Iteration done once"
-    return hull
 
 def leftOrRight(p1x, p1y, p2x, p2y, p3x, p3y):
     "Used to determine the right path for the convex points"
@@ -169,10 +166,11 @@ def main():
     PIndex = slopes.index(0)
     DataXandY = order(DataXandY, PIndex)  # Order data so that P comes first
 
-    # DataXandY[0].append(DataXandY[0][0])  # Add the first x at end- Full circle
-    # DataXandY[1].append(DataXandY[1][0])  # Add the first y at end- Full circle
 
     hull = scan(DataXandY)   # Call the graham scan algorithm
+
+    # hull[0].append(hull[0][0])  # Add the first x at end- Full circle
+    # hull[1].append(hull[1][0])  # Add the first y at end- Full circle
 
     end = timer()
     draw(DataXandY[0], DataXandY[1], labels[0], labels[1], 1)
