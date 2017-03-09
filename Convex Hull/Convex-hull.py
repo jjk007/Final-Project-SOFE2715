@@ -173,8 +173,8 @@ def main():
     # hull[1].append(hull[1][0])  # Add the first y at end- Full circle
 
     end = timer()
-    draw(DataXandY[0], DataXandY[1], labels[0], labels[1], 1)
     draw(hull[0], hull[1], labels[0], labels[1], 2) # Draw the hull
+    draw(DataXandY[0], DataXandY[1], labels[0], labels[1], 1)
     plt.show()
     print "Time elapsed: " + str(end-start) + " seconds" # Fix timer placement!
 
