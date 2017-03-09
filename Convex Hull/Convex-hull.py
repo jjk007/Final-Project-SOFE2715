@@ -16,40 +16,31 @@ def scan(data):
     hull.append([])      # For the Y-coordinates
     hull[0].append(data[0].pop(0))
     hull[1].append(data[1].pop(0))
-    listSize = len(data[0])
-    i = 0
     M = 1 # This Stores the size of the hull stack
-    while i < listSize:
-        print "i = "+ str(i)
+    while not isEmpty(data[0]): # This is true when all points are serviced
         hull[0].append(data[0].pop(0))  # Pop the first most item, add to hull
         hull[1].append(data[1].pop(0))  # Pop the first most item, add to hull
         M += 1
         print "M = "+ str(M)
         print "Hull appended"
-        if leftOrRight(hull[0][M-1], hull[1][M-1],
-                       data[0][M], data[1][M],
-                       data[0][i], data[1][i]) == 'left':
-            i += 1
-            print "i = "+ str(i)
-        elif leftOrRight(hull[0][M-1], hull[1][M-1],
-                         data[0][M], data[1][M],
-                         data[0][i], data[1][i]) == 'right':
+        if leftOrRight(hull[0][M-2], hull[1][M-2],
+                       data[0][M-1], data[1][M-1],
+                       data[0][0], data[1][0]) == 'left':
+            print "left"
+        elif leftOrRight(hull[0][M-2], hull[1][M-2],
+                         data[0][M-1], data[1][M-1],
+                         data[0][0], data[1][0]) == 'right':
+            print "right"
             # Backtracking
-            data[0].insert(i-1, hull[0].pop())
-            data[1].insert(i-1, hull[1].pop())
+            hull[0].pop()
+            hull[1].pop()
             M -= 1
-            i += 1
-            print "i = "+ str(i)
             print "M = "+ str(M)
-            print "Hull poped and inserted into data"
         else:  # The points are collinear
-            i += 1
-            print "Points are collinear"
-            print "i = "+ str(i)
-        if i == listSize:
-            return hull, data
+            print "Iteration done once"
+            continue
         print "Iteration done once"
-
+    return hull
 
 def leftOrRight(p1x, p1y, p2x, p2y, p3x, p3y):
     "Used to determine the right path for the convex points"
@@ -60,8 +51,19 @@ def leftOrRight(p1x, p1y, p2x, p2y, p3x, p3y):
         return 'right'
     elif diff > 0:
         return 'left'
-    else:
+    elif diff == 0:
+        print "Points are collinear"
         return 1
+    else:
+        print "The impossible have happened yet again"
+
+
+def isEmpty(anyList):
+    "This method checks if the list is empty or not"
+    if not anyList:
+        return True # List is empty
+    else:
+        return False # List is not empty
 
 
 def order(data, P):
@@ -163,18 +165,18 @@ def main():
     DataXandY = swap(DataXandY, 0, P)
     P = 0                            # Because it was swapped
     slopes = slope(DataXandY, P)
-    DataXandY, slopes = sortI(slopes, DataXandY)  # Sort the points ccw
+    DataXandY, slopes = sortI(slopes, DataXandY)  # Sort the points based on slope
     PIndex = slopes.index(0)
     DataXandY = order(DataXandY, PIndex)  # Order data so that P comes first
 
     # DataXandY[0].append(DataXandY[0][0])  # Add the first x at end- Full circle
     # DataXandY[1].append(DataXandY[1][0])  # Add the first y at end- Full circle
 
-    hull, DataXandY = scan(DataXandY)   # Call the graham scan algorithm
+    hull = scan(DataXandY)   # Call the graham scan algorithm
 
     end = timer()
     draw(DataXandY[0], DataXandY[1], labels[0], labels[1], 1)
-    draw(hull[0], hull[1], labels[0], labels[1], 2)
+    draw(hull[0], hull[1], labels[0], labels[1], 2) # Draw the hull
     plt.show()
     print "Time elapsed: " + str(end-start) + " seconds" # Fix timer placement!
 
