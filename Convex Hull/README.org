@@ -1,0 +1,22 @@
+* Read me
+** File tree
+     #+BEGIN_SRC txt
+     .
+     ├── Convex-hull.py  -> Mail algorithm file.
+     ├── resources.org
+     ├── Exercises
+     │   ├── exercise-1.csv
+     │   ├── exercise-2.csv
+     │   ├── exercise-3.csv
+     │   ├── exercise-4.csv
+     │   ├── exercise-5.csv
+     │   └── exercise-6.csv
+     └── Test
+         ├── plot-tester.py
+         └── string-compare-test.py
+     #+END_SRC
+** Python Dependencies
+
+- [[http://matplotlib.org/][matplotlib]]    -> For plotting the data
+- csv           -> For parsing the csv files
+- timeit        -> For the timer
