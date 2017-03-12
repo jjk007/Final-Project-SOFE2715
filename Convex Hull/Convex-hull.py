@@ -26,15 +26,13 @@ def scan(data):
         if len(data[0]) == 0:
             return hull, newPoints # This is true when all points are serviced
         M += 1
-        print len(data[0])
         if leftOrRight(hull[0][M-2], hull[1][M-2],
                        hull[0][M-1], hull[1][M-1],
                        data[0][0], data[1][0]) == 'left':
-            print "left"
+            pass
         elif leftOrRight(hull[0][M-2], hull[1][M-2],
                          hull[0][M-1], hull[1][M-1],
                          data[0][0], data[1][0]) == 'right':
-            print "right"
             # Backtracking
             newPoints[0].append(hull[0].pop())
             newPoints[1].append(hull[1].pop())
@@ -75,7 +73,7 @@ def order(data, P):
     return data
 
 
-def sortI(base, data):
+def insertionSort(base, data):
     '''
     This method sorts the array using insertion sort, the sort is special
     because it sorts the data based on the given base, not the data itself.
@@ -165,20 +163,18 @@ def main():
     DataXandY = swap(DataXandY, 0, P)
     P = 0                            # Because it was swapped
     slopes = slope(DataXandY, P)
-    DataXandY, slopes = sortI(slopes, DataXandY)  # Sort the points based on slope
+    DataXandY, slopes = insertionSort(slopes, DataXandY)  # Sort the points based on slope
     PIndex = slopes.index(0)
     DataXandY = order(DataXandY, PIndex)  # Order data so that P comes first
 
 
     hull, newPoints = scan(DataXandY)   # Call the graham scan algorithm
-    print newPoints
 
-    hull[0].append(hull[0][0])  # Add the first x at end- Full circle
-    hull[1].append(hull[1][0])  # Add the first y at end- Full circle
-
-    end = timer()
+    hull[0].append(hull[0][0])  # Add the first x at end -> Full circle
+    hull[1].append(hull[1][0])  # Add the first y at end -> Full circle
     draw(hull[0], hull[1], labels[0], labels[1], 2) # Draw the hull
     draw(newPoints[0], newPoints[1], labels[0], labels[1], 1)
+    end = timer()
     plt.show()
     print "Time elapsed: " + str(end-start) + " seconds" # Fix timer placement!
 
