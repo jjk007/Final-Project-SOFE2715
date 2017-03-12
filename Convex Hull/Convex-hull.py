@@ -42,6 +42,7 @@ def scan(data):
         else:  # The points are collinear
             continue
 
+
 def leftOrRight(p1x, p1y, p2x, p2y, p3x, p3y):
     "Used to determine the right path for the convex points"
     cal1 = (p2x - p1x) * (p3y - p1y)
@@ -52,7 +53,6 @@ def leftOrRight(p1x, p1y, p2x, p2y, p3x, p3y):
     elif diff > 0:
         return 'left'
     elif diff == 0:
-        print "Points are collinear"
         return 1
     else:
         print "The impossible have happened yet again"
