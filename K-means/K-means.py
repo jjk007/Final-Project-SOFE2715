@@ -61,7 +61,7 @@ def euclideanDistance(p, q):
 
 def parse():
     "Parses the data sets from the csv file we are given to work with"
-    file = open("./Exercises/exercise-1.csv")  # should be manualized later
+    file = open("./Exercises/exercise-3.csv")  # should be manualized later
     rawFile = csv.reader(file)    # Reading the csv file into a raw form
     rawData = list(rawFile)       # Converting the raw data into list from.
     return rawData
