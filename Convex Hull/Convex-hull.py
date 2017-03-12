@@ -10,32 +10,39 @@ import matplotlib.pyplot as plt
 
 
 def scan(data):
-    "This method uses graham-scan to create a convex hull from the given points"
+    "This method uses grahamScan to create a convex hull from the given points"
     hull = []               # Used like a stack here
     hull.append([])         # For the X-coordinates
     hull.append([])         # For the Y-coordinates
     newPoints = []          # For storing the unused points
     newPoints.append([])    # For the X-coordinates
     newPoints.append([])    # For the Y-coordinates
+    backTrackTracker = False
     hull[0].append(data[0].pop(0))
     hull[1].append(data[1].pop(0))
-    M = 1 # This Stores the size of the hull stack
-    while True: 
-        hull[0].append(data[0].pop(0))  # Pop the first most item, add to hull
-        hull[1].append(data[1].pop(0))  # Pop the first most item, add to hull
-        if len(data[0]) == 0:
-            return hull, newPoints # This is true when all points are serviced
-        M += 1
+    '''First element of the data is always the starting point of the hull,
+       which is the lowest y-coordinate we calculated
+    '''
+    M = 1  # This Stores the size of the hull stack
+    while True:
+        if backTrackTracker != True:
+            hull[0].append(data[0].pop(0))  # Pop the first most item, add to hull
+            hull[1].append(data[1].pop(0))  # Pop the first most item, add to hull
+            M += 1
+        if len(data[0]) == 0:  # This is true when all points are serviced
+            return hull, newPoints
         if leftOrRight(hull[0][M-2], hull[1][M-2],
                        hull[0][M-1], hull[1][M-1],
                        data[0][0], data[1][0]) == 'left':
-            pass
+            backTrackTracker = False
+
         elif leftOrRight(hull[0][M-2], hull[1][M-2],
                          hull[0][M-1], hull[1][M-1],
                          data[0][0], data[1][0]) == 'right':
             # Backtracking
             newPoints[0].append(hull[0].pop())
             newPoints[1].append(hull[1].pop())
+            backTrackTracker = True
             M -= 1
         else:  # The points are collinear
             continue
@@ -140,7 +147,7 @@ def swap(data, i, j):
 
 def parse():
     "Parses the data sets from the csv file we are given to work with"
-    file = open("./Exercises/exercise-1.csv")  # should be manualized later
+    file = open("./Exercises/exercise-3.csv")  # should be manualized later
     rawFile = csv.reader(file)    # Reading the csv file into a raw form
     rawData = list(rawFile)       # Converting the raw data into list from.
     return rawData
