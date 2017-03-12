@@ -1,6 +1,29 @@
 * Final-Project-SOFE2715
 
-Selections
+** Selections
  - K-means Clustering
  - +Face localization+
  - Convex Hull
+
+** K-means - TODO [2/9]
+- [X] Implement main algorithm
+- [X] Check for all the exercises given
+- [ ] Implement better data structure
+- [ ] Calculate complexity
+- [ ] Develop performance matrix
+- [ ] Work on improving the performance
+- [ ] Make demo files for each exercise
+- [ ] Write read-me for using the file
+- [ ] Make the main file usable from command line
+
+** Convex Hull - TODO [1/10]
+- [X] Implement main algorithm
+- [ ] Implement better sorting algorithm
+- [ ] Check for all the exercises given
+- [ ] Implement data structures from scratch
+- [ ] Calculate complexity
+- [ ] Develop performance matrix
+- [ ] Work on improving the performance
+- [ ] Make demo files for each exercise
+- [ ] Write read-me for using the file
+- [ ] Make the main file usable from command line
