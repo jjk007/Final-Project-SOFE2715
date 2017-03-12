@@ -13,8 +13,8 @@
 - [ ] Develop performance matrix
 - [ ] Work on improving the performance
 - [ ] Make demo files for each exercise
-- [ ] Write read-me for using the file
 - [ ] Make the main file usable from command line
+- [ ] Write read-me for using the file
 
 ** Convex Hull - TODO [1/10]
 - [X] Implement main algorithm
@@ -25,5 +25,5 @@
 - [ ] Develop performance matrix
 - [ ] Work on improving the performance
 - [ ] Make demo files for each exercise
-- [ ] Write read-me for using the file
 - [ ] Make the main file usable from command line
+- [ ] Write read-me for using the file
