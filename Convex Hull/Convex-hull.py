@@ -80,7 +80,7 @@ def order(data, P):
     return data
 
 
-def insertionSort(base, data):
+def insertionSort(data, base):
     '''
     This method sorts the array using insertion sort, the sort is special
     because it sorts the data based on the given base, not the data itself.
@@ -147,7 +147,7 @@ def swap(data, i, j):
 
 def parse():
     "Parses the data sets from the csv file we are given to work with"
-    file = open("./Exercises/exercise-3.csv")  # should be manualized later
+    file = open("./Exercises/exercise-2.csv")  # Should be manualized later
     rawFile = csv.reader(file)    # Reading the csv file into a raw form
     rawData = list(rawFile)       # Converting the raw data into list from.
     return rawData
@@ -170,7 +170,7 @@ def main():
     DataXandY = swap(DataXandY, 0, P)
     P = 0                            # Because it was swapped
     slopes = slope(DataXandY, P)
-    DataXandY, slopes = insertionSort(slopes, DataXandY)  # Sort the points based on slope
+    DataXandY, slopes = insertionSort(DataXandY, slopes )  # Sort the points based on slope
     PIndex = slopes.index(0)
     DataXandY = order(DataXandY, PIndex)  # Order data so that P comes first
 
