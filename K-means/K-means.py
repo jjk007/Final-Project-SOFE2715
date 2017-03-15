@@ -91,9 +91,9 @@ def meanCords(unorderedCluster):
     totalX = 0
     totalY = 0
     for i in range(0, listSize):
-        totalX += orderedCluster[0][i] # Adds up all the X-cords
+        totalX += orderedCluster[0][i]  # Adds up all the X-cords
     for i in range(0, listSize):
-        totalY += orderedCluster[1][i] # Adds up all the Y-cords
+        totalY += orderedCluster[1][i]  # Adds up all the Y-cords
     avgX = totalX/listSize
     avgY = totalY/listSize
     newCentroids = [0, 0]
@@ -117,6 +117,7 @@ def toXandY(unorderedData):
 
 def main():
     "This is the main method were execusion begins"
+    print ""
     global K
     global count
     start = timer()
@@ -136,7 +137,7 @@ def main():
     cluster()  # Executes the main algorithm
     end = timer()
     print "Number of iterations  : " + str(count)
-    print "Amount of time elapsed: " + str(end-start)+ " seconds"
+    print "Amount of time elapsed: " + str(end-start) + " seconds"
     # Now we plot them
     for i in range(0, K):
         clustered[i] = toXandY(clustered[i])  # Seperates X and Y cords

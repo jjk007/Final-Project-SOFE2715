@@ -26,8 +26,8 @@ def scan(data):
     M = 1  # This Stores the size of the hull stack
     while True:
         if backTrackTracker != True:
-            hull[0].append(data[0].pop(0))  # Pop the first most item, add to hull
-            hull[1].append(data[1].pop(0))  # Pop the first most item, add to hull
+            hull[0].append(data[0].pop(0))  # Pop the 1st most item, add to hull
+            hull[1].append(data[1].pop(0))  # Pop the 1st most item, add to hull
             M += 1
         if len(data[0]) == 0:  # This is true when all points are serviced
             return hull, newPoints
@@ -66,9 +66,9 @@ def leftOrRight(p1x, p1y, p2x, p2y, p3x, p3y):
 def isEmpty(anyList):
     "This method checks if the list is empty or not"
     if not anyList:
-        return True # List is empty
+        return True  # List is empty
     else:
-        return False # List is not empty
+        return False  # List is not empty
 
 
 def order(data, P):
@@ -121,11 +121,11 @@ def euclideanDistance(p, q):
 def slope(data, P=0):
     "Calculates slopes between data-points and P"
     m = []
-    m.append(0) # Dummy value for Pth Value slope
+    m.append(0)  # Dummy value for Pth Value slope
     listSize = len(data[0])
-    for i in range(1, listSize): #Starting from 1 excluding P point
+    for i in range(1, listSize):  # Starting from 1 excluding P point
         m.append((data[1][i] - data[1][P])/(data[0][i] - data[0][P]))
-    return m # Return the list with slopes
+    return m  # Return the list with slopes
 
 
 def draw(xCords, yCords, xLabel, yLabel, what):
@@ -139,11 +139,13 @@ def draw(xCords, yCords, xLabel, yLabel, what):
         plt.plot(xCords, yCords, '-o', color="r")  # Make the boundaries
     # plt.legend()
 
+
 def swap(data, i, j):
     "This method swaps the two points i and j in the list data"
     data[0][i], data[0][j] = data[0][j], data[0][i]  # Swap x-Cords
     data[1][i], data[1][j] = data[1][j], data[1][i]  # Swap y-cords
     return data
+
 
 def parse():
     "Parses the data sets from the csv file we are given to work with"
