@@ -46,7 +46,7 @@ def cluster():
         calculatedCentroid.append(meanCords(clustered[i]))
 
     if cmp(calculatedCentroid, centroid) == 0:  # Comapre old and new centriods
-        return count
+        return count  # The end
 
     centroid = list(calculatedCentroid)  # Copying new centriod to the old var
     count += 1

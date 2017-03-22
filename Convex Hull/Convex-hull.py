@@ -179,9 +179,10 @@ def main():
 
     hull, newPoints = scan(DataXandY)   # Call the graham scan algorithm
 
+    print "here"
     hull[0].append(hull[0][0])  # Add the first x at end -> Full circle
     hull[1].append(hull[1][0])  # Add the first y at end -> Full circle
-    draw(hull[0], hull[1], labels[0], labels[1], 2) # Draw the hull
+    draw(hull[0], hull[1], labels[0], labels[1], 2)  # Draw the hull
     draw(newPoints[0], newPoints[1], labels[0], labels[1], 1)
     end = timer()
     plt.show()
