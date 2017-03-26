@@ -93,10 +93,69 @@ def insertionSort(data, base):
         j = i-1
         while j >= 0 and base[j] > CurrentItem:
             base[j+1] = base[j]  # Swap base array
-            swap(data, j+1, j)   # Swap data array
+            swapData(data, j+1, j)   # Swap data array
             j = j-1  # incrementing the divider because we swapped values
             base[j+1] = CurrentItem
     return data, base  # Method ends here
+
+
+def heapSort(heap, base):  # O(n log n)
+    "Implements Heapsort for max heap, sorting in ascending order"
+
+    def maxHeapify(heap, base, i, size):  # O(log n)
+        "This method maintains the Heap property of the heap from root i"
+        l = left(i)
+        r = right(i)
+        if l <= size and base[l] > base[i]:
+            large = l
+        else:
+            large = i
+        if r <= size and base[r] > base[large]:
+            large = r
+        if large != i:
+            swap(base, i, large)
+            swap(heap[0], i, large)
+            swap(heap[1], i, large)
+            maxHeapify(heap, base, large, size)   # minheapify from node = large
+
+    def buildHeap(heap, base):  # O(n)
+        "This method builds a min heap, with largest element at index 1/root"
+        ArraySize = len(base)-1
+        start = int(math.floor(ArraySize/2))
+        for i in range(start, 0, -1):
+            maxHeapify(heap, base, i, ArraySize)
+
+    def left(i):
+        "Returns the index of the left element of the parent node i"
+        return 2*i
+
+    def right(i):
+        "Returns the index of the right element of the parent node i"
+        return (2*i)+1
+
+    def swap(data, i, j):
+        "This method swaps the two points i and j in the list data"
+        print i, j
+        data[i], data[j] = data[j], data[i]  # do THE swap
+        return data
+
+    heap[0] = [None] + heap
+    heap[1] = [None] + heap
+    base = [None] + base
+    buildHeap(heap, base)
+    heapSize = len(base)-1
+    # Here we are reducing the heapsize until to zero, removing the
+    # sorted value from the heap each time
+    for i in range(heapSize, 1, -1):
+        swap(heap[0], 1, i)
+        swap(heap[1], 1, i)
+        swap(base, 1, i)
+        heapSize -= 1
+        maxHeapify(heap, base, 1, heapSize)
+    heap[0].pop(0)          # Remove the None value that was added for ordering
+    heap[1].pop(0)          # Remove the None value that was added for ordering
+    base.pop(0)          # Remove the None value that was added for ordering
+    return heap, base
 
 
 def toXandY(unorderedData):
@@ -140,10 +199,10 @@ def draw(xCords, yCords, xLabel, yLabel, what):
     # plt.legend()
 
 
-def swap(data, i, j):
-    "This method swaps the two points i and j in the list data"
-    data[0][i], data[0][j] = data[0][j], data[0][i]  # Swap x-Cords
-    data[1][i], data[1][j] = data[1][j], data[1][i]  # Swap y-cords
+def swapData(data, i, j):
+    "This method swapDatas the two points i and j in the list data"
+    data[0][i], data[0][j] = data[0][j], data[0][i]  # SwapData x-Cords
+    data[1][i], data[1][j] = data[1][j], data[1][i]  # SwapData y-cords
     return data
 
 
@@ -169,8 +228,8 @@ def main():
     # Finding the starting point P
     DataXandY = toXandY(newData)     # DataXandY -> [[Xs][Ys]]
     P = DataXandY[1].index(min(DataXandY[1]))  # Locating the minimum y-cord
-    DataXandY = swap(DataXandY, 0, P)
-    P = 0                            # Because it was swapped
+    DataXandY = swapData(DataXandY, 0, P)
+    P = 0                            # Because it was swapData
     slopes = slope(DataXandY, P)
     DataXandY, slopes = insertionSort(DataXandY, slopes )  # Sort the points based on slope
     PIndex = slopes.index(0)
