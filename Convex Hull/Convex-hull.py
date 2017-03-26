@@ -35,17 +35,12 @@ def scan(data):
                        hull[0][M-1], hull[1][M-1],
                        data[0][0], data[1][0]) == 'left':
             backTrackTracker = False
-
-        elif leftOrRight(hull[0][M-2], hull[1][M-2],
-                         hull[0][M-1], hull[1][M-1],
-                         data[0][0], data[1][0]) == 'right':
+        else:  # The points are collinear or makes a right turn
             # Backtracking
             newPoints[0].append(hull[0].pop())
             newPoints[1].append(hull[1].pop())
             backTrackTracker = True
             M -= 1
-        else:  # The points are collinear
-            continue
 
 
 def leftOrRight(p1x, p1y, p2x, p2y, p3x, p3y):
@@ -204,7 +199,7 @@ def swapData(data, i, j):
 
 def parse():
     "Parses the data sets from the csv file we are given to work with"
-    file = open("./Exercises/exercise-5.csv")  # Should be manualized later
+    file = open("./Exercises/exercise-4.csv")  # Should be manualized later
     rawFile = csv.reader(file)    # Reading the csv file into a raw form
     rawData = list(rawFile)       # Converting the raw data into list from.
     return rawData
