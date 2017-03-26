@@ -114,9 +114,8 @@ def heapSort(heap, base):  # O(n log n)
             large = r
         if large != i:
             swap(base, i, large)
-            swap(heap[0], i, large)
-            swap(heap[1], i, large)
-            maxHeapify(heap, base, large, size)   # minheapify from node = large
+            swapData(heap, i, large)
+            maxHeapify(heap, base, large, size)   # maxheapify from node = large
 
     def buildHeap(heap, base):  # O(n)
         "This method builds a min heap, with largest element at index 1/root"
@@ -135,20 +134,18 @@ def heapSort(heap, base):  # O(n log n)
 
     def swap(data, i, j):
         "This method swaps the two points i and j in the list data"
-        print i, j
         data[i], data[j] = data[j], data[i]  # do THE swap
         return data
 
-    heap[0] = [None] + heap
-    heap[1] = [None] + heap
+    heap[0] = [None] + heap[0]
+    heap[1] = [None] + heap[1]
     base = [None] + base
     buildHeap(heap, base)
     heapSize = len(base)-1
     # Here we are reducing the heapsize until to zero, removing the
     # sorted value from the heap each time
     for i in range(heapSize, 1, -1):
-        swap(heap[0], 1, i)
-        swap(heap[1], 1, i)
+        swapData(heap, 1, i)
         swap(base, 1, i)
         heapSize -= 1
         maxHeapify(heap, base, 1, heapSize)
@@ -196,7 +193,6 @@ def draw(xCords, yCords, xLabel, yLabel, what):
         plt.scatter(xCords, yCords, color="g", s=20)
     else:
         plt.plot(xCords, yCords, '-o', color="r")  # Make the boundaries
-    # plt.legend()
 
 
 def swapData(data, i, j):
@@ -208,7 +204,7 @@ def swapData(data, i, j):
 
 def parse():
     "Parses the data sets from the csv file we are given to work with"
-    file = open("./Exercises/exercise-2.csv")  # Should be manualized later
+    file = open("./Exercises/exercise-5.csv")  # Should be manualized later
     rawFile = csv.reader(file)    # Reading the csv file into a raw form
     rawData = list(rawFile)       # Converting the raw data into list from.
     return rawData
@@ -229,16 +225,16 @@ def main():
     DataXandY = toXandY(newData)     # DataXandY -> [[Xs][Ys]]
     P = DataXandY[1].index(min(DataXandY[1]))  # Locating the minimum y-cord
     DataXandY = swapData(DataXandY, 0, P)
-    P = 0                            # Because it was swapData
+    P = 0                            # Because it was swaped
     slopes = slope(DataXandY, P)
-    DataXandY, slopes = insertionSort(DataXandY, slopes )  # Sort the points based on slope
+
+    DataXandY, slopes = heapSort(DataXandY, slopes)  # Sort the
+                                                     # points based on slopes
     PIndex = slopes.index(0)
     DataXandY = order(DataXandY, PIndex)  # Order data so that P comes first
 
-
     hull, newPoints = scan(DataXandY)   # Call the graham scan algorithm
 
-    print "here"
     hull[0].append(hull[0][0])  # Add the first x at end -> Full circle
     hull[1].append(hull[1][0])  # Add the first y at end -> Full circle
     draw(hull[0], hull[1], labels[0], labels[1], 2)  # Draw the hull
