@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+# !/usr/bin/env python2.7
 # thou shall not cross 80 columns in thy file
 
 # K-means clustering Algorithm
@@ -19,7 +19,7 @@ count = 0                    # Number of iterations
 
 
 def cluster():
-    "This function performs the k-means clustering algorithm"
+    "This function performs the k-means clustering using Lloyd's algorithm"
     global count
     global centroid
     global calculatedCentroid
