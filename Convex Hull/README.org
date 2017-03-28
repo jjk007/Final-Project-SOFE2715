@@ -1,7 +1,7 @@
 * Read me
 
 ** Usability
-- Make sure the [[Python Dependencies]] are installed
+- Make sure the [[https://github.com/jjk007/Final-Project-SOFE2715/tree/master/Convex%20Hull#python-dependencies][Python Dependencies]]are installed
 - The script is accessible from Command Line and uses python 2.x
 - To *run* the program
   - Locate to the directory where ~Convex-hull.py~ is located
@@ -29,7 +29,7 @@
          ├── plot-tester.py
          └── string-compare-test.py
      #+END_SRC
-** [[Python Dependencies]]
+** Python Dependencies
 
 - [[http://matplotlib.org/][matplotlib]]    -> For plotting the data
 - csv           -> For parsing the csv files
