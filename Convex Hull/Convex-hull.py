@@ -3,6 +3,7 @@
 
 # Convex-Hull creation using Graham Scan Algorithm
 
+import sys
 from timeit import default_timer as timer
 import csv
 import math
@@ -197,19 +198,32 @@ def swapData(data, i, j):
     return data
 
 
-def parse():
+def parse(file_name):
     "Parses the data sets from the csv file we are given to work with"
-    file = open("./Exercises/exercise-4.csv")  # Should be manualized later
+    file = open(file_name)
     rawFile = csv.reader(file)    # Reading the csv file into a raw form
     rawData = list(rawFile)       # Converting the raw data into list from.
+    file.close()
     return rawData
 
 
 def main():
     print ""
     newData = []
-    start = timer()
-    data = parse()                  # Calling the parse funtion we made
+    try:
+        file_name = sys.argv[1]
+    except IndexError:
+        print "Please pass the file name and try again!"
+        print "Take a look at the README!"
+        return 1
+    if file_name.endswith(".csv"):
+        start = timer()
+        data = parse(file_name)   # Calling the parse funtion we made
+    else:
+        print "Wrong file format!!!"
+        print "This program can only parse CSV files"
+        return 1
+
     labels = data.pop(0)            # Necessary evil
     listSize = len(data)
     for i in range(0, listSize):    # Converting the string list to float
