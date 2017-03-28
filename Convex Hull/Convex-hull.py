@@ -25,9 +25,9 @@ def scan(data):
     '''
     M = 1  # This Stores the size of the hull stack
     while True:
-        if backTrackTracker != True:
-            hull[0].append(data[0].pop(0))  # Pop the 1st most item, add to hull
-            hull[1].append(data[1].pop(0))  # Pop the 1st most item, add to hull
+        if backTrackTracker is not True:
+            hull[0].append(data[0].pop(0))  # Pop the 1st item, add to hull
+            hull[1].append(data[1].pop(0))  # Pop the 1st item, add to hull
             M += 1
         if len(data[0]) == 0:  # This is true when all points are serviced
             return hull, newPoints
@@ -110,7 +110,7 @@ def heapSort(heap, base):  # O(n log n)
         if large != i:
             swap(base, i, large)
             swapData(heap, i, large)
-            maxHeapify(heap, base, large, size)   # maxheapify from node = large
+            maxHeapify(heap, base, large, size)  # maxheapify from node = large
 
     def buildHeap(heap, base):  # O(n)
         "This method builds a min heap, with largest element at index 1/root"
@@ -223,8 +223,9 @@ def main():
     P = 0                            # Because it was swaped
     slopes = slope(DataXandY, P)
 
-    DataXandY, slopes = heapSort(DataXandY, slopes)  # Sort the
-                                                     # points based on slopes
+    # Sort the points based on slopes, using heapsort
+    DataXandY, slopes = heapSort(DataXandY, slopes)
+
     PIndex = slopes.index(0)
     DataXandY = order(DataXandY, PIndex)  # Order data so that P comes first
 
@@ -232,11 +233,11 @@ def main():
 
     hull[0].append(hull[0][0])  # Add the first x at end -> Full circle
     hull[1].append(hull[1][0])  # Add the first y at end -> Full circle
+    end = timer()
     draw(hull[0], hull[1], labels[0], labels[1], 2)  # Draw the hull
     draw(newPoints[0], newPoints[1], labels[0], labels[1], 1)
-    end = timer()
+    print "Time elapsed: " + str(end-start) + " seconds"
     plt.show()
-    print "Time elapsed: " + str(end-start) + " seconds" # Fix timer placement!
 
 
 if __name__ == "__main__":
