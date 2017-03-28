@@ -3,6 +3,7 @@
 
 # K-means clustering Algorithm
 
+import sys
 import csv
 import random
 from timeit import default_timer as timer
@@ -59,11 +60,12 @@ def euclideanDistance(p, q):
     return distance
 
 
-def parse():
+def parse(file_name):
     "Parses the data sets from the csv file we are given to work with"
-    file = open("./Exercises/exercise-3.csv")  # should be manualized later
+    file = open(file_name)
     rawFile = csv.reader(file)    # Reading the csv file into a raw form
     rawData = list(rawFile)       # Converting the raw data into list from.
+    file.close()
     return rawData
     '''
     Csv reader reads the file line by line, and for the files
@@ -120,11 +122,24 @@ def main():
     print ""
     global K
     global count
+    try:
+        file_name = sys.argv[1]
+        K = int(sys.argv[2])
+    except IndexError:
+        print "Please pass the file name and Number of clusters to be formed"
+        print "Take a look at the README!"
+        print "Try again"
+        return 1
+    if file_name.endswith(".csv"):
+        start = timer()
+        data = parse(file_name)   # Calling the parse funtion we made
+    else:
+        print "Wrong file format!!!"
+        print "This program can only parse CSV files"
+        return 1
     start = timer()
-    K = 3
     names = ["Cluster 1", "Cluster 2", "Cluster 3", "Cluster 4", "Cluster 5"]
     color = ["r", "g", "b", "m", "c"]  # Stores the color values
-    data = parse()                     # Calling the parse funtion we made
     labels = data.pop(0)
     listSize = len(data)
     for i in range(0, listSize):    # Converting the string list to float

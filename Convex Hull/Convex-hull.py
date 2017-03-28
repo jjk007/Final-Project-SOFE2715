@@ -203,6 +203,7 @@ def parse(file_name):
     file = open(file_name)
     rawFile = csv.reader(file)    # Reading the csv file into a raw form
     rawData = list(rawFile)       # Converting the raw data into list from.
+    file.close()
     return rawData
 
 
