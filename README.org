@@ -5,17 +5,17 @@
  - +Face localization+
  - Convex Hull
 
-** K-means - TODO [2/8]
+** K-means - TODO [3/8]
 - [X] Implement main algorithm
 - [X] Check for all the exercises given
 - [ ] Implement better data structure
 - [ ] Calculate complexity
 - [ ] Develop performance matrix
 - [ ] Work on improving the performance
-- [ ] Make the main file usable from command line
+- [X] Make the main file usable from command line
 - [ ] Write read-me for using the file
 
-** Convex Hull - TODO [4/9]
+** Convex Hull - TODO [5/9]
 - [X] Implement main algorithm
 - [X] Implement better sorting algorithm
 - [X] Check for all the exercises given
@@ -23,5 +23,5 @@
 - [ ] Calculate complexity
 - [ ] Develop performance matrix
 - [X] Work on improving the performance
-- [ ] Make the main file usable from command line
+- [X] Make the main file usable from command line
 - [ ] Write read-me for using the file

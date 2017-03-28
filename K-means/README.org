@@ -1,4 +1,19 @@
 * Read me
+
+** Usability
+- Make sure the <<Python Dependencies>> are installed
+- The script is accessible from Command Line and uses python 2.x
+- To *run* the program
+  - Locate to the directory where ~K-means.py~ is located
+  - Run ~python K-means.py file_name.csv K~ in terminal or CMD
+  - Here *K* is the number of clusters to be generated
+  - *K* should be an integer.
+  - The *file_name* and *K* should be passed in order, otherwise an error will be outputted
+- If your file is located in a sub-directory use:
+  - ~python K-means.py ./subdirectoy_name/any_file_name.csv K~
+- The program can only parse ~CSV~ files and will give an error output otherwise
+- The amount of time taken to cluster the data and the number of
+  iterations done to cluster the data is also outputted at the end
 ** File tree
      #+BEGIN_SRC txt
      .
@@ -21,7 +36,7 @@
          └── toXandY-Tester.py
      
      #+END_SRC
-** Python Dependencies
+** [[Python Dependencies]]
 
 - [[http://matplotlib.org/][matplotlib]]   -> For plotting the data
 - csv          -> For parsing the csv files
