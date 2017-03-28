@@ -1,7 +1,7 @@
 * Read me
 
 ** Usability
-- Make sure the <<Python Dependencies>> are installed
+- Make sure the [[Python Dependencies]] are installed
 - The script is accessible from Command Line and uses python 2.x
 - To *run* the program
   - Locate to the directory where ~Convex-hull.py~ is located
