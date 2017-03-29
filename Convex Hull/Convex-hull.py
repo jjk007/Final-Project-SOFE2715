@@ -226,6 +226,7 @@ def main():
 
     labels = data.pop(0)            # Necessary evil
     listSize = len(data)
+    print "Number of Data points serviced: " + listSize
     for i in range(0, listSize):    # Converting the string list to float
         newData.append([])          # Add a new sublsit every time
         for j in range(0, 2):       # Append converted data to the new list

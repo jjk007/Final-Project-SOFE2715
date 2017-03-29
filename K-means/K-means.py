@@ -125,8 +125,11 @@ def main():
     try:
         file_name = sys.argv[1]
         K = int(sys.argv[2])
+        if K > 5 or K < 2:
+            print "K should be larger than 2 and less than 5"
+            return 1
     except IndexError:
-        print "Please pass the file name and Number of clusters to be formed"
+        print "Please input the file name and Number of clusters to be formed respectively"
         print "Take a look at the README!"
         print "Try again"
         return 1
@@ -137,10 +140,12 @@ def main():
         print "Wrong file format!!!"
         print "This program can only parse CSV files"
         return 1
+    # Maximum number of clusters is five
     names = ["Cluster 1", "Cluster 2", "Cluster 3", "Cluster 4", "Cluster 5"]
     color = ["r", "g", "b", "m", "c"]  # Stores the color values
     labels = data.pop(0)
     listSize = len(data)
+    print "Number of Data points serviced: " + listSize
     for i in range(0, listSize):    # Converting the string list to float
         newData.append([])          # Add a new sublsit every time
         for j in range(0, 2):       # Append converted data to the new list
