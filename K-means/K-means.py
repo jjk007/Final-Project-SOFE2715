@@ -39,8 +39,12 @@ def cluster():
             Here I am calculating the distance between centroid & each
             value to classify them into differnt clusters
             '''
-        minIndex = distance.index(min(distance))  # Both of these should be
-        clustered[minIndex].append(val)           # should be in the outer loop
+        minIndex = distance.index(min(distance))  # Finding the index
+                                                  # of lowest element
+                                                  # in distance
+        clustered[minIndex].append(val)           # Append the current
+                                                  # val to the closest
+                                                  # cluster
 
     del calculatedCentroid[:]  # Empty the calculatedCentroid list everytime
     for i in range(0, K):      # Calculate new centriods
