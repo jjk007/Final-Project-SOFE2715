@@ -145,7 +145,7 @@ def main():
     color = ["r", "g", "b", "m", "c"]  # Stores the color values
     labels = data.pop(0)
     listSize = len(data)
-    print "Number of Data points serviced: " + listSize
+    print "Number of Data points serviced: " + str(listSize)
     for i in range(0, listSize):    # Converting the string list to float
         newData.append([])          # Add a new sublsit every time
         for j in range(0, 2):       # Append converted data to the new list
