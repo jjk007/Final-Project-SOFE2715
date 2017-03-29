@@ -180,11 +180,11 @@ def slope(data, P=0):
     return m  # Return the list with slopes
 
 
-def draw(xCords, yCords, xLabel, yLabel, what):
+def draw(xCords, yCords, xLabel, yLabel, what, filename):
     "This method draws the Convex-Hull plot using Matplotlib"
     plt.xlabel(xLabel)
     plt.ylabel(yLabel)
-    plt.title("Convex-Hull")
+    plt.title("Convex-Hull - "+filename)
     if what == 1:
         plt.scatter(xCords, yCords, color="g", s=20)
     else:
@@ -248,8 +248,8 @@ def main():
     hull[0].append(hull[0][0])  # Add the first x at end -> Full circle
     hull[1].append(hull[1][0])  # Add the first y at end -> Full circle
     end = timer()
-    draw(hull[0], hull[1], labels[0], labels[1], 2)  # Draw the hull
-    draw(newPoints[0], newPoints[1], labels[0], labels[1], 1)
+    draw(hull[0], hull[1], labels[0], labels[1], 2, file_name)  # Draw the hull
+    draw(newPoints[0], newPoints[1], labels[0], labels[1], 1, file_name)
     print "Time elapsed: " + str(end-start) + " seconds"
     plt.show()
 

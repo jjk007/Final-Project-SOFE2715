@@ -77,11 +77,11 @@ def parse(file_name):
     '''
 
 
-def draw(xCords, yCords, xLabel, yLabel, clusterLabel, pointerColor):
+def draw(xCords, yCords, xLabel, yLabel, clusterLabel, pointerColor, filename):
     "This method draws the clusterd plot using Matplotlib"
     plot.xlabel(xLabel)
     plot.ylabel(yLabel)
-    plot.title("K-means Clustered")
+    plot.title("K-means Clustered - "+ filename)
     plot.scatter(xCords, yCords, color=pointerColor, s=10, label=clusterLabel)
     plot.legend()
 
@@ -137,7 +137,6 @@ def main():
         print "Wrong file format!!!"
         print "This program can only parse CSV files"
         return 1
-    start = timer()
     names = ["Cluster 1", "Cluster 2", "Cluster 3", "Cluster 4", "Cluster 5"]
     color = ["r", "g", "b", "m", "c"]  # Stores the color values
     labels = data.pop(0)
@@ -157,7 +156,7 @@ def main():
     for i in range(0, K):
         clustered[i] = toXandY(clustered[i])  # Seperates X and Y cords
         draw(clustered[i][0], clustered[i][1],
-             labels[0], labels[1], names[i], color[i])
+             labels[0], labels[1], names[i], color[i], file_name)
     plot.show()  # Shows the graph that is drawn in memory
 
 
