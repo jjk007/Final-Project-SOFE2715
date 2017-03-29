@@ -76,25 +76,6 @@ def order(data, P):
     return data
 
 
-def insertionSort(data, base):
-    '''
-    This method sorts the array using insertion sort, the sort is special
-    because it sorts the data based on the given base, not the data itself.
-    Here it sorts the data based on the slope array passed as the base
-     '''
-    size = len(base)
-    for i in range(1, size):
-        CurrentItem = base[i]
-        # j is the divider of the sorted and unsorted portion
-        j = i-1
-        while j >= 0 and base[j] > CurrentItem:
-            base[j+1] = base[j]  # Swap base array
-            swapData(data, j+1, j)   # Swap data array
-            j = j-1  # incrementing the divider because we swapped values
-            base[j+1] = CurrentItem
-    return data, base  # Method ends here
-
-
 def heapSort(heap, base):  # O(n log n)
     "Implements Heapsort for max heap, sorting in ascending order"
 
