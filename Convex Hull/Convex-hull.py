@@ -3,6 +3,7 @@
 
 # Convex-Hull creation using Graham Scan Algorithm
 
+from stack import myStack
 import sys
 from timeit import default_timer as timer
 import csv
@@ -12,34 +13,33 @@ import matplotlib.pyplot as plt
 
 def scan(data):
     "This method uses grahamScan to create a convex hull from the given points"
-    hull = []               # Used like a stack here
-    hull.append([])         # For the X-coordinates
-    hull.append([])         # For the Y-coordinates
+    hullX = myStack()    # For the X-coordinates of the hull
+    hullY = myStack()    # For the Y-coordinates of the hull
     newPoints = []          # For storing the unused points
     newPoints.append([])    # For the X-coordinates
     newPoints.append([])    # For the Y-coordinates
     backTrackTracker = False
-    hull[0].append(data[0].pop(0))
-    hull[1].append(data[1].pop(0))
+    hullX.stackPush(data[0].pop(0))
+    hullY.stackPush(data[1].pop(0))
     '''First element of the data is always the starting point of the hull,
        which is the lowest y-coordinate we calculated
     '''
     M = 1  # This Stores the size of the hull stack
     while True:
         if backTrackTracker is not True:
-            hull[0].append(data[0].pop(0))  # Pop the 1st item, add to hull
-            hull[1].append(data[1].pop(0))  # Pop the 1st item, add to hull
+            hullX.stackPush(data[0].pop(0)) # Pop the 1st item, add to hull
+            hullY.stackPush(data[1].pop(0)) # Pop the 1st item, add to hull
             M += 1
         if len(data[0]) == 0:  # This is true when all points are serviced
-            return hull, newPoints
-        if leftOrRight(hull[0][M-2], hull[1][M-2],
-                       hull[0][M-1], hull[1][M-1],
+            return hullX.fullStack(), hullY.fullStack(), newPoints
+        if leftOrRight(hullX.atIndex(M-2), hullY.atIndex(M-2),
+                       hullX.atIndex(M-1), hullY.atIndex(M-1),
                        data[0][0], data[1][0]) == 'left':
             backTrackTracker = False
         else:  # The points are collinear or makes a right turn
             # Backtracking
-            newPoints[0].append(hull[0].pop())
-            newPoints[1].append(hull[1].pop())
+            newPoints[0].append(hullX.stackPop())
+            newPoints[1].append(hullY.stackPop())
             backTrackTracker = True
             M -= 1
 
@@ -225,12 +225,12 @@ def main():
     PIndex = slopes.index(0)
     DataXandY = order(DataXandY, PIndex)  # Order data so that P comes first
 
-    hull, newPoints = scan(DataXandY)   # Call the graham scan algorithm
+    hullX, hullY, newPoints = scan(DataXandY)   # Call the graham scan algorithm
 
-    hull[0].append(hull[0][0])  # Add the first x at end -> Full circle
-    hull[1].append(hull[1][0])  # Add the first y at end -> Full circle
+    hullX.append(hullX[0])  # Add the first x at end -> Full circle
+    hullY.append(hullY[0])  # Add the first y at end -> Full circle
     end = timer()
-    draw(hull[0], hull[1], labels[0], labels[1], 2, file_name)  # Draw the hull
+    draw(hullX, hullY, labels[0], labels[1], 2, file_name)  # Draw the hull
     draw(newPoints[0], newPoints[1], labels[0], labels[1], 1, file_name)
     print "Time elapsed: " + str(end-start) + " seconds"
     plt.show()

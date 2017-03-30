@@ -37,16 +37,3 @@ class myStack(object):
         if index > self.currentSize-1 or index < 0:
             raise Exception('listIndexOutOfRange')
         return self.stackContents[index]
-
-
-HullX = myStack()
-
-HullX.stackPush(54)
-HullX.stackPush(87)
-HullX.stackPush(856)
-HullX.stackPush(11)
-HullX.stackPush(21)
-HullX.stackPush(35)
-
-print HullX.fullStack()
-print HullX.atIndex(-1)
