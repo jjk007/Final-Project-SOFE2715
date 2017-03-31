@@ -1,9 +1,9 @@
 * K-means clustering Performance.
 
-System    : Linux Mint(Kernel version: 4.4), 2.9 GHz 
-K         : Number of clusters developed
-*Data Size* : Number of points serviced
-*Time*      : Average time of 3 execution
+- System    : Linux Mint(Kernel version: 4.4), 2.9 GHz 
+- K         : Number of clusters developed
+- *Data Size* : Number of points serviced
+- *Time*      : Average time of 3 execution
  
  | File-name      | K | Data Size | Time Taken               |
  |----------------+---+-----------+--------------------------|

@@ -1,8 +1,8 @@
 * Convex-Hull Performance.
 
-System    : Linux Mint(Kernel version: 4.4), 2.9 GHz 
-*Data Size* : Number of points serviced
-*Time*      : Average time of 3 execution
+- System    : Linux Mint(Kernel version: 4.4), 2.9 GHz 
+- *Data Size* : Number of points serviced
+- *Time*      : Average time of 3 execution
  
  | File-name      | Data Size | Time Taken              |
  |----------------+-----------+-------------------------|
