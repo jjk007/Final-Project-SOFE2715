@@ -15,6 +15,7 @@
      #+BEGIN_SRC txt
      .
      ├── Convex-hull.py  -> Mail algorithm file.
+     ├── stack.py
      ├── resources.org
      ├── README.org
      ├── Exercises
@@ -26,6 +27,7 @@
      │   └── exercise-6.csv
      └── Test
          ├── line-arguments.py
+         ├── myStack.py
          ├── plot-tester.py
          └── string-compare-test.py
      #+END_SRC

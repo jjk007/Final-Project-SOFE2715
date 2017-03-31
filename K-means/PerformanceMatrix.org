@@ -1,0 +1,15 @@
+* K-means clustering Performance.
+
+System    : Linux Mint(Kernel version: 4.4), 2.9 GHz 
+K         : Number of clusters developed
+*Data Size* : Number of points serviced
+*Time*      : Average time of 3 execution
+ 
+ | File-name      | K | Data Size | Time Taken               |
+ |----------------+---+-----------+--------------------------|
+ | exercise-1.csv | 2 |       150 | 1.2310 x 10^-3 seconds   |
+ | exercise-2.csv | 4 |        75 | 1.0205 x 10^-3 seconds   |
+ | exercise-3.csv | 3 |       178 | 5.9233 x 10^-3 seconds   |
+ | exercise-4.csv | 3 |        50 | 754.0385 x 10^-6 seconds |
+ | exercise-5.csv | 3 |      1000 | 34.7033 x 10^-3 seconds  |
+ | exercise-6.csv | 4 |    100000 | 68.9932 seconds          |

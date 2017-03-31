@@ -1,0 +1,14 @@
+* Convex-Hull Performance.
+
+System    : Linux Mint(Kernel version: 4.4), 2.9 GHz 
+*Data Size* : Number of points serviced
+*Time*      : Average time of 3 execution
+ 
+ | File-name      | Data Size | Time Taken              |
+ |----------------+-----------+-------------------------|
+ | exercise-1.csv |        10 | 8.5041 x 10^-3 seconds  |
+ | exercise-2.csv |        50 | 7.1706 x 10^-3 seconds  |
+ | exercise-3.csv |       500 | 15.7053 x 10^-3 seconds |
+ | exercise-4.csv |      1000 | 20.0487 x 10^-3 seconds |
+ | exercise-5.csv |       250 | 5.3310 x 10^-3 seconds  |
+ | exercise-6.csv |      1000 | 35.0351 x 10^-3 seconds |
