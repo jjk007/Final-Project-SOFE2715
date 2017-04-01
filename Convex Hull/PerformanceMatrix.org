@@ -4,6 +4,8 @@
 - *Data Size* : Number of points serviced
 - *Time*      : Average time of 3 execution
  
+** 
+ 
  | File-name      | Data Size | Time Taken              |
  |----------------+-----------+-------------------------|
  | exercise-1.csv |        10 | 8.5041 x 10^-3 seconds  |
