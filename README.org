@@ -5,7 +5,7 @@
  - +Face localization+
  - Convex Hull
 
-** K-means - TODO [7/7]
+** K-means - TODO [7/8]
 - [X] Implement main algorithm
 - [X] Check for all the exercises given
 - [X] Calculate complexity
@@ -13,6 +13,7 @@
 - [X] Work on improving the performance
 - [X] Make the main file usable from command line
 - [X] Write read-me for using the file
+- [ ] Make it work for 3-D as well
 
 ** Convex Hull - TODO [9/9]
 - [X] Implement main algorithm
