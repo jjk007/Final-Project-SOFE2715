@@ -1,6 +1,11 @@
 * Visualizing Data
 
 This repository contains Algorithms written to visualize Big data.  
+
+#+CAPTION: Image representig big data, in a way
+#+NAME: face of the repository
+     [[./face.jpg]]
+
 Current implementations include:-
 - 2-D Convex Hull -  [[http://www.geeksforgeeks.org/convex-hull-set-2-graham-scan/][Graham Scan algorithm]] 
 - K-means clustering - [[http://sepwww.stanford.edu/data/media/public/docs/sep124/yaxun1/paper_html/node2.html][Lloyd's algorithm]]
