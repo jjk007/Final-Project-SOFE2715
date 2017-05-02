@@ -1,5 +1,10 @@
 * Read me
 
+#+CAPTION: Image representing solution for one of the exercises
+#+NAME: face of the repository
+     [[./face.png]]
+
+
 ** Usability
 - Make sure the [[https://github.com/jjk007/Final-Project-SOFE2715/tree/master/Convex%20Hull#python-dependencies][Python Dependencies]]are installed
 - The script is accessible from Command Line and uses python 2.x
