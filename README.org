@@ -1,27 +1,6 @@
-* Final-Project-SOFE2715
+* Visualizing Data
 
-** Selections
- - K-means Clustering
- - +Face localization+
- - Convex Hull
-
-** K-means - TODO [7/8]
-- [X] Implement main algorithm
-- [X] Check for all the exercises given
-- [X] Calculate complexity
-- [X] Develop performance matrix
-- [X] Work on improving the performance
-- [X] Make the main file usable from command line
-- [X] Write read-me for using the file
-- [ ] Make it work for 3-D as well
-
-** Convex Hull - TODO [9/9]
-- [X] Implement main algorithm
-- [X] Implement better sorting algorithm
-- [X] Check for all the exercises given
-- [X] Implement data structures from scratch
-- [X] Calculate complexity
-- [X] Develop performance matrix
-- [X] Work on improving the performance
-- [X] Make the main file usable from command line
-- [X] Write read-me for using the file
+This repository contains Algorithms written to visualize Big data.  
+Current implementations include:-
+- 2-D Convex Hull -  [[http://www.geeksforgeeks.org/convex-hull-set-2-graham-scan/][Graham Scan algorithm]] 
+- K-means clustering - [[http://sepwww.stanford.edu/data/media/public/docs/sep124/yaxun1/paper_html/node2.html][Lloyd's algorithm]]
